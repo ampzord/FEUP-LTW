@@ -275,7 +275,7 @@
         <button class="backbt" onclick="window.location.href='index.php'">Back</button>
     </div>
     <footer>
-        <br><br>
+        <br>
         <a href="https://github.com/ampzord/FEUP-LTW">FEUP-LTW 2017-2018</a><br>
         Francisco Silva | Rui Leixo | António | Todos os direitos reservados
     </footer>

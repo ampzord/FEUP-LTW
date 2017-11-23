@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
   </head>
   <body>
 
@@ -30,7 +30,7 @@
 
 
     <footer>
-      <br>
+<br>
       <a href="https://github.com/ampzord/FEUP-LTW">FEUP-LTW 2017-2018</a><br>
       Francisco Silva | Rui Leixo | António | Todos os direitos reservados
     </footer>
