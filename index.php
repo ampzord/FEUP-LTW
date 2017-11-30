@@ -19,7 +19,7 @@
       </div>
 
       <div class="loginForm">
-        <form id="loginForm" method="post" action="login.php">
+        <form id="loginForm" method="post" action="database/action_login.php">
           <input name="username" type="text" autocomplete="true" placeholder="Username">
           <input name="password" type="password" autocomplete="true" placeholder="Password">
           <input type="submit" value="Login">
