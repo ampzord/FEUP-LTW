@@ -16,12 +16,12 @@ include_once(__DIR__ . "/connection.php");
   if ($user !== false && password_verify($_POST["password"], $user['passwordHash'])){
     echo "Login Successful\n";
     //echo $_SERVER['HTTP_REFERER'];
-    header('Location: ' . $_SERVER['HTTP_REFERER'] . 'interface.php');
+    //$rootPath = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
+    header('Location: ../interface.php'); //TODO improve later
+    echo "After Login";
   }
   else {
     echo "Login Failed\n";
     header('Location: ' . $_SERVER['HTTP_REFERER']);
   }
-
-
 ?>

@@ -44,7 +44,7 @@
             <form>
               <input type="text" name="note" id="textNotes">
             </form>
-          
+
         </div>
         <div class="notes">
           This is a test! And its incredible!
@@ -56,7 +56,7 @@
     <footer>
       <br><br>
       <a href="https://github.com/ampzord/FEUP-LTW">FEUP-LTW 2017-2018</a><br>
-      Francisco Silva | Rui Leixo | António | Todos os direitos reservados
+      Francisco Silva | Rui Leixo | António Pereira | Todos os direitos reservados
     </footer>
 
   </body>
