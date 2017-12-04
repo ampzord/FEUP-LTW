@@ -17,7 +17,7 @@
             </td>
             <td>
               <form class="navBarform" method="get" action="search.php">
-                <input type="text" name="search" placeholder="Wazzup?!" id="searchButton"></input>
+                <input type="text" name="search" id="searchButton"></input>
               </form>
             </td>
             <td style="width:100%;">
@@ -35,10 +35,21 @@
       </div>
     </header>
 
-    <br><br><br><br><br><br><br><br>
 
-    <div class="content">
+    <div class="defaultContainer">
+      <div class="notesContainer">
+        <div class="notes">
+          <h2>Try me lol lol lol</h2>
 
+            <form>
+              <input type="text" name="note" id="textNotes">
+            </form>
+          
+        </div>
+        <div class="notes">
+          This is a test! And its incredible!
+        </div>
+      </div>
     </div>
 
 
