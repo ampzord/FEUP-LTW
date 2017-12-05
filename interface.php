@@ -1,5 +1,6 @@
 <?
 include_once('includes/init.php');
+checkValidSession();
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +32,7 @@ include_once('includes/init.php');
               <button id="notificationButton"></button>
             </td>
             <td>
-              <button id="profileButton">F</button>
+              <button id="profileButton" onclick="window.location.href='logout.php'"><? echo strtoupper($_SESSION['username'][0]); ?></button>
             </td>
           </tr>
         </table>

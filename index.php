@@ -24,8 +24,8 @@ include_once('includes/init.php');
 
       <div class="loginForm">
         <form id="loginForm" method="post" action="action_login.php">
-          <input name="username" type="text" autocomplete="true" placeholder="Username">
-          <input name="password" type="password" autocomplete="true" placeholder="Password">
+          <input name="username" type="text" autocomplete="true" placeholder="Username" required>
+          <input name="password" type="password" autocomplete="true" placeholder="Password" required>
           <input type="submit" value="Login">
         </form>
         <button class="backbt" onclick="window.location.href='register.php'">Register</button>

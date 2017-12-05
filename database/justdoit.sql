@@ -38,4 +38,4 @@ CREATE TABLE Task (
 );
 
 -- Admin
-INSERT INTO User(id, username, fullName, passwordHash) VALUES (1, "admin", "Malaquias","$2a$04$TDAv90bpsp2U2K010ZfC..zrxDQjGbiPEdMyVT9BiOeDlOT/NjMge");
+INSERT INTO User(id, username, fullName, passwordHash) VALUES (1, "admin", "Administrator","$2a$04$CxozQsTaY1Vs0UvWGBa9Y.PGlz8lLkpYmP9NeA87M5kE11DoD3QFG");

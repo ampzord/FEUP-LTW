@@ -7,11 +7,9 @@ include_once('includes/init.php');
 
   if($stmt->fetch()){
     echo 'Username ' . $_POST['username'] . ' already exists';
-    die();
   }
   if($_POST['password'] != $_POST['passwordVerify']){
     echo 'The passwords didn\'t match';
-    die();
   }
 
   $passHash = password_hash ( $_POST['password'], PASSWORD_DEFAULT, []);
@@ -20,4 +18,7 @@ include_once('includes/init.php');
 // Insert na tabela
   $stmt = $dbh->prepare('INSERT INTO User(username, email, country, passwordHash) VALUES (?, ?, ?, ?)');
   $stmt->execute(array($_POST['username'], $_POST['email'], $_POST['country'], $passHash));
+
+  setCurrentUser($_POST['username']);
+  header('Location: interface.php');
 ?>

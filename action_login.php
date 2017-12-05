@@ -16,12 +16,14 @@ include_once('includes/init.php');
   if ($user !== false && password_verify($_POST["password"], $user['passwordHash'])){
     echo "Login Successful\n";
     setCurrentUser($user['username']);
+    //$_SESSION['loginError'] = "";
     header('Location: interface.php');
   }
   else {
     echo "Login Failed\n";
     session_destroy();
     session_start();
+    //$_SESSION['loginError'] = "Mensagem de Error";
     header('Location: index.php');
   }
 ?>
