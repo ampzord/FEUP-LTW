@@ -21,6 +21,7 @@ include_once('includes/init.php');
   else {
     echo "Login Failed\n";
     session_destroy();
+    session_start();
     header('Location: index.php');
   }
 ?>

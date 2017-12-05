@@ -1,15 +1,45 @@
 /*@import url('https://fonts.googleapis.com/css?family=Didact+Gothic|Josefin+Sans|Manuale');*/
 
 html{
+    margin-left: 0;
+    left: 0;
     min-width: 100%;
     height: calc(100% - 80px);
+}
+
+table{
+    margin-right: 4px;
+}
+
+#textNotes {
+    font-size: 14px;
+    width: 208px;
+    height: 150px;
+    margin: 0px 8px 8px 8px;
+    border: 1px solid #ccc;
 }
 
 .navBarForm{
     height:32px;
 }
 
+.defaultContainer{
+    margin-top: 57px;
+}
+
+.notesContainer{
+    justify-content: space-between;
+    align-self: flex-end;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex: initial;
+}
+
 header{
+    left: 0;
     top: 0;
     height: 0;
     color: #FFF;
@@ -23,11 +53,40 @@ td{
 }
 
 .headerContent{
+    width: 100%;
     padding-left: 3px;
     padding-right: 3px;
 }
 
+.notes h2 {
+    padding: 10px 10px 10px 10px;
+    background:#666;
+    color:white; 
+    font-size: 14px;
+    border-top-right-radius: 10px; 
+    border-top-left-radius: 10px; 
+    margin-top: -8px;
+    text-shadow: 1px 1px 3px #000;
+}
+
+.notes p {
+    color:#333;
+    padding:10px 10px 10px 10px;
+}
+
+.notes{
+    width: 225px;
+    height: 200px;
+    background-color: #333;
+    border-radius: 10px;
+    color: #FFF;
+    margin: 10px 10px 10px 10px;
+    border: 2px;
+    border-color: #666;
+}
+
 #searchButton, #searchButton:visited{
+    margin-bottom: 2px;
     margin: 0;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -35,14 +94,14 @@ td{
     width:120px;
     font-size: 12px;
     height: 32px;
-    background-color: #444;
+    background-color: #999;
     background-image: url('../img/search.png');
     background-repeat: no-repeat;
     background-position: right;
     padding-right:5px;
     border: none;
     border-radius: 3px;
-    text-shadow: 1px 1px 2px #000;
+    color: #FFF;
 }
 
 #addButton, #addButton:visited{
@@ -51,7 +110,7 @@ td{
     appearance: none;
     width:32px;
     height: 32px;
-    background-color: #444;
+    background-color: #999;
     background-image: url('../img/add.png');
     background-repeat: no-repeat;
     background-position: center;
@@ -63,9 +122,9 @@ td{
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
     appearance: none !important;
-    width:32px !important;
+    width: 32px !important;
     height: 32px !important;
-    background-color: #333 !important;
+    background-color: #666 !important;
     background-image: url('../img/add.png') !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -94,7 +153,7 @@ td{
     appearance: none !important;
     width:32px !important;
     height: 32px !important;
-    background-color: #803d3d !important;
+    background-color: #c83025 !important;
     background-image: url('../img/notification.png') !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -124,7 +183,7 @@ td{
     appearance: none !important;
     width:32px !important;
     height: 32px !important;
-    background-color: #469861 !important;
+    background-color: #309200 !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
     border: none !important;
@@ -135,16 +194,14 @@ td{
 }
 
 .interfaceHeader{
-    top:0;
-    left:0;
-    width: 100%;
     height: 45px;
-    background-color: #000;
+    background-color: #333;
     position: fixed;
     text-align: center;
 }
 
 body{
+    width: 100%;
     font-family: "Helvetica";
     background-image: url("../img/background.jpg");
     background-color: #FFF;
@@ -153,6 +210,7 @@ body{
     position:relative; 
     min-height: 100%;
     left:0;
+    margin: 0;
 }
 
 a:link {

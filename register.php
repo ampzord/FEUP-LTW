@@ -15,10 +15,11 @@
 
     <div class="registerForm">
         <form id="loginForm" method="post" action="action_register.php">
-          <input name="username" type="text" autocomplete="true" placeholder="*Username"><br>
-          <input name="password" type="password" autocomplete="true" placeholder="*Password"><br>
-          <input name="passwordVerify" type="password" autocomplete="true" placeholder="*Verify Password"><br>
-          <input name="email" type="text" autocomplete="true" placeholder="*E-mail"><br>
+          <input name="username" type="text" autocomplete="true" placeholder="*Username" required> <br>
+          <input name="password" type="password" autocomplete="true" placeholder="*Password" required><br>
+          <input name="passwordVerify" type="password" autocomplete="true" placeholder="*Verify Password" required><br>
+          <input name="email" type="text" autocomplete="true" placeholder="*E-mail" required><br>
+
           <select name="country">
             <option value="">Country</option>
             <option value="Afganistan">Afghanistan</option>
@@ -277,7 +278,7 @@
     <footer>
         <br><br>
         <a href="https://github.com/ampzord/FEUP-LTW">FEUP-LTW 2017-2018</a><br>
-        Francisco Silva | Rui Leixo | António | Todos os direitos reservados
+        Francisco Silva | Rui Leixo | António Pereira | Todos os direitos reservados
     </footer>
   </body>
 </html>
