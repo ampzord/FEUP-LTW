@@ -1,5 +1,5 @@
 <?php
-include_once(__DIR__ . "/connection.php");
+include_once('includes/init.php');
 
 // echo $_POST['country'];
 

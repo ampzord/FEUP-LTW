@@ -14,7 +14,7 @@
     <br><br><br><br><br><br><br><br>
 
     <div class="registerForm">
-        <form id="loginForm" method="post" action="database/action_register.php">
+        <form id="loginForm" method="post" action="action_register.php">
           <input name="username" type="text" autocomplete="true" placeholder="*Username"><br>
           <input name="password" type="password" autocomplete="true" placeholder="*Password"><br>
           <input name="passwordVerify" type="password" autocomplete="true" placeholder="*Verify Password"><br>

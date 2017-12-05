@@ -1,5 +1,5 @@
 <?php
-include_once(__DIR__ . "/connection.php");
+include_once('includes/init.php');
 
 
   // $stmt = $db->prepare('SELECT * FROM users WHERE username = ?');
@@ -15,13 +15,12 @@ include_once(__DIR__ . "/connection.php");
 
   if ($user !== false && password_verify($_POST["password"], $user['passwordHash'])){
     echo "Login Successful\n";
-    //echo $_SERVER['HTTP_REFERER'];
-    header('Location: ' . $_SERVER['HTTP_REFERER'] . 'interface.php');
+    setCurrentUser($user['username']);
+    header('Location: interface.php');
   }
   else {
     echo "Login Failed\n";
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    session_destroy();
+    header('Location: index.php');
   }
-
-
 ?>
