@@ -6,7 +6,7 @@ function setCurrentUser($username){
 }
 
 function checkValidSession(){
-  if(!isset($_SERVER['username']))
+  if(!isset($_SESSION['username']))
     header('Location: index.php');
 }
 ?>
