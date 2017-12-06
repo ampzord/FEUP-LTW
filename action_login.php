@@ -1,5 +1,6 @@
 <?php
 include_once('includes/init.php');
+include_once('listsAndTasks.php');
 
 
   // $stmt = $db->prepare('SELECT * FROM users WHERE username = ?');
@@ -17,6 +18,7 @@ include_once('includes/init.php');
     echo "Login Successful\n";
     setCurrentUser($user['username']);
     //$_SESSION['loginError'] = "";
+    getAllListsFromUser();
     header('Location: interface.php');
   }
   else {
