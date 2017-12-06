@@ -23,6 +23,7 @@ CREATE TABLE User (
 CREATE TABLE Team (
   id INTEGER PRIMARY KEY,
   name TEXT UNIQUE,
+  color TEXT,
   idUser INTEGER REFERENCES User(id)
 );
 

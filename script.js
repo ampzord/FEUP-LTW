@@ -1,7 +1,9 @@
 'use strict';
 
+// let listName = null;
+// let teamName = null;
 // Id of last message received
-//let last_id = -1;
+//let last_id = -1
 
 let container = document.querySelector('.notesContainer');
 let bt = document.getElementById('addButton');
@@ -24,23 +26,24 @@ function refresh() {
 
 // Send message
 function addNote(event) {
-  let listName = document.querySelector('input[name=listName]').value;
-  let teamName = document.querySelector('input[name=teamName]').value;
+  listName = document.querySelector('input[name=listName]').value;
+  teamName = document.querySelector('input[name=teamName]').value;
 
-  // Delete sent message
-  document.querySelector('input[name=message]').value='';
+  // // Delete sent message
+  // document.querySelector('input[name=message]').value='';
 
   // Send message
   let request = new XMLHttpRequest();
   request.open('get', 'addNewList.php?' + encodeForAjax({'listName': listName, 'teamName': teamName}), true);
   request.addEventListener('load', listsReceived);
   request.send();
-  
+
   event.preventDefault();
 }
 
 // Called when messages are received
 function listsReceived() {
+  container.innerHTML = "";  //Clears container
   let lines = JSON.parse(this.responseText);
   lines.forEach(function(data){
     let line = document.createElement('div');
@@ -52,7 +55,7 @@ function listsReceived() {
       '<h2>' + data.listName + ' - ' + data.teamName + '</h2>';
 
     container.append(line);
-    container.scrollTop = cont.scrollTopMax;
+    container.scrollTop = container.scrollTopMax;
   });
 }
 
