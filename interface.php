@@ -11,6 +11,7 @@ checkValidSession();
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="script.js" defer></script>
   </head>
   <body>
 
@@ -45,7 +46,7 @@ checkValidSession();
 
     <div class="defaultContainer">
       <div class="notesContainer">
-        <?getAllListsFromUser();?>
+        <!-- <?getAllListsFromUser();?> -->
       </div>
     </div>
 
