@@ -1,6 +1,8 @@
 <?
 include_once('includes/init.php');
+include_once('listsAndTasks.php');
 checkValidSession();
+//getAllListsFromUser();
 ?>
 
 <!DOCTYPE html>

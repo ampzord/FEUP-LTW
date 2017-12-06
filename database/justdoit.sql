@@ -43,6 +43,10 @@ INSERT INTO User(id, username, fullName, passwordHash) VALUES (1, "admin", "Admi
 INSERT INTO Team(id, name, idUser) VALUES (1, "Equipa do Admin", 1);
 
 INSERT INTO List(id, name, idGroup) VALUES (1, "Lista 1 do Admin", 1);
+INSERT INTO List(id, name, idGroup) VALUES (2, "Lista 2 do Admin", 1);
 
 INSERT INTO Task(id, field, idList) VALUES(1, "Task 1 da lista do Admin", 1);
 INSERT INTO Task(id, field, idList) VALUES(2, "Task 2 da lista do Admin", 1);
+
+INSERT INTO Task(id, field, idList) VALUES(3, "Task 1 da lista B do Admin", 2);
+INSERT INTO Task(id, field, idList) VALUES(4, "Task 2 da lista B do Admin", 2);
