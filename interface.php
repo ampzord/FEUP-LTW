@@ -45,17 +45,7 @@ checkValidSession();
 
     <div class="defaultContainer">
       <div class="notesContainer">
-        <div class="notes">
-          <h2>Try me lol lol lol</h2>
-
-            <form>
-              <input type="text" name="note" id="textNotes">
-            </form>
-
-        </div>
-        <div class="notes">
-          This is a test! And its incredible!
-        </div>
+        <?getAllListsFromUser();?>
       </div>
     </div>
 
