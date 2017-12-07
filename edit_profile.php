@@ -17,16 +17,13 @@
       <legend><strong>Edit Profile</strong></legend>
       <form id="edit-profile" method="post" action="action_edit_profile.php">
         <label>Full Name
-            <input placeholder="Full Name" type="text" name="full-name" />
+            <input placeholder="Full Name" type="text" value="<?php echo $_SESSION['fullname'];?>" name="fullname" />
         </label>
         <label>Email
-            <input type="email" placeholder="Email" name="email"/> <!-- value="<?php echo $email;?>" - actualmente dá erro, no email mas acho que é porque a sessao nao esta iniciada -->
-        </label>
-        <label>Phone Number
-            <input type="text" placeholder="Phone number must have 9 digits" Name"name="phone-number"/>
+            <input type="email" name="email" />
         </label>
         <label>Birth Date
-            <input placeholder="dd/mm/yyyy" type="text" name="birth-date" />
+            <input type="date" name="birth-date" />
         </label>
         <select name="country">
           <option value="">Country</option>
@@ -287,11 +284,11 @@
             <input placeholder="Current Password" type="password" name="current-password"/>
         </label>
         <br>
-        <center><input type="submit" value="Edit Profile"/></center>
+        <center><input type="submit" value="Edit"/></center>
       </form>
       </fieldset>
 
-    <button class="backbt" onclick="window.location.href='interface.php'">Back</button>
+    <button class="backbt" onclick="window.location.href='view_profile.php'">Back</button>
     <footer>
         <br><br>
         <a href="https://github.com/ampzord/FEUP-LTW">FEUP-LTW 2017-2018</a><br>

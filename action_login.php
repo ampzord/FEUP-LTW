@@ -16,6 +16,8 @@ include_once('includes/init.php');
     echo "Login Successful\n";
     setCurrentUser($user['username']);
     //$_SESSION['loginError'] = "";
+    $_SESSION['username'] = $_POST['username'];
+    $_SESSION['fullname'] = $user['fullName'];
     header('Location: interface.php');
   }
   else {
