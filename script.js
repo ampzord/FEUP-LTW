@@ -6,9 +6,9 @@
 //let last_id = -1
 
 let container = document.querySelector('.notesContainer');
-let bt = document.getElementById('addButton');
+let bt = document.getElementsByName('addButton')[0];
 
-bt.addEventListener('click', addNote);
+bt.addEventListener('submit', addNote);
 
 // Run refresh every 5s
 window.setInterval(refresh, 5000);
@@ -54,6 +54,10 @@ function listsReceived() {
     line.classList.add('notes');
     line.innerHTML =
       '<h2>' + data.listName + ' - ' + data.teamName + '</h2>';
+
+    for(let i = 0; i < data.tasks.length; i++){
+      line.innerHTML += '<p>' + data.tasks[i].field + '</p>'; 
+    }
 
     container.append(line);
     container.scrollTop = container.scrollTopMax;

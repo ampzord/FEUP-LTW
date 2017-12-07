@@ -27,6 +27,8 @@ checkValidSession();
                   <form>
                     <input type="text" name="listName" id="listForm" placeholder="List Name"></input>
                     <select name="teamName" id="listForm">
+                      <option value="">Noob Team</option>
+                      <option value="">Stupid Team</option>
                       <? 
                         //query php
                       ?>
