@@ -45,9 +45,10 @@ function addNote(event) {
 function listsReceived() {
   container.innerHTML = "";  //Clears container
   let lines = JSON.parse(this.responseText);
+   console.log(lines);
   lines.forEach(function(data){
     let line = document.createElement('div');
-
+    // console.log(line['tasks']);
     //last_id = data.id;
 
     line.classList.add('notes');

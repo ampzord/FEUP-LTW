@@ -34,8 +34,17 @@
 
   $stmt->execute(array($_SESSION['username']));
   $messages = $stmt->fetchAll();
-  //print_r($messages);
-
+  // print_r($messages);
+  //console_log($messages);
+  //die;
+  for($i = 0; $i < sizeof($messages); $i++){
+    $stmt = $dbh->prepare('SELECT Task.field
+      FROM Task JOIN List ON Task.idList == List.id
+      WHERE List.id == ?');
+    $stmt->execute(array($messages[$i]['listId']));
+    $tasks = $stmt->fetchAll();
+    $messages[$i]['tasks'][] = $tasks;
+  }
 
   // In order to get the most recent messages we have to reverse twice
   //$messages = array_reverse($messages);
