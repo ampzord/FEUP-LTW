@@ -21,12 +21,30 @@ checkValidSession();
         <table>
           <tr>
             <td>
-              <button id="addButton"></button>
+              <div class="dropdown">
+                <span><button id="addButton"></button></span>
+                <div class="dropdown-content">
+                  <form>
+                    <input type="text" name="listName" id="listForm" placeholder="List Name"></input>
+                    <select name="teamName" id="listForm">
+                      <? 
+                        //query php
+                      ?>
+                    </select>
+                    <input type="submit" name="addButton" id="listFormSubmit" value="Create"></input>
+                  </form>
+                </div>
+              </div>
             </td>
             <td>
-              <form class="navBarform" method="get" action="search.php">
-                <input type="text" name="search" id="searchButton"></input>
-              </form>
+              <div class="dropdown">
+                <span><button id="searchButton"></button></span>
+                <div class="dropdown-content">
+                  <form>
+                    <input type="text" name="search" placeholder="Search here ..."></input>
+                  </form>
+                </div>
+              </div>
             </td>
             <td style="width:100%;">
               <img alt="Just Do It!" style="width: 70px;" src="img/logoInterface.png">
