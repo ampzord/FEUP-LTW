@@ -41,7 +41,7 @@ $country = $_POST['country'];
 //$birthDate = $_POST['birth-date'];
 
 //update Profile
-updateProfile($fullName, $email, $country, $username);
+updateProfile($email, $country, $fullName, $username);
 
 //Update password
 if ($_POST['new-password'] !== '')
