@@ -1,7 +1,8 @@
 <?php
-include_once('init.php');
+include_once('includes/init.php');
 
   function verifyPassword() {
+    global $dbh;
     $stmt = $dbh->prepare('SELECT passwordHash FROM User WHERE username = ?');
     $stmt->execute(array($_SESSION['username']));
     $pass = $stmt->fetch();
@@ -19,4 +20,13 @@ include_once('init.php');
   function updateProfile() {
 
   }
+
+  function getUserTeams(){
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT Team.name FROM Team Join User ON Team.idUser == Team.id WHERE User.username = ?');
+    $stmt->execute(array($_SESSION['username']));
+    $teamsTable = $stmt->fetchAll();
+    $_SESSION['teams'] = $teamsTable['name'];
+  }
+
 ?>

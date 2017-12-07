@@ -1,5 +1,6 @@
 <?php
 include_once('includes/init.php');
+include_once('database/users.php');
 
   // $stmt = $db->prepare('SELECT * FROM users WHERE username = ?');
   //   $stmt->execute(array($username));
@@ -15,6 +16,7 @@ include_once('includes/init.php');
   if ($user !== false && password_verify($_POST["password"], $user['passwordHash'])){
     echo "Login Successful\n";
     setCurrentUser($user['username']);
+    getUserTeams();
     //$_SESSION['loginError'] = "";
     header('Location: interface.php');
   }

@@ -1,15 +1,8 @@
   <?
   include_once('includes/init.php');
-  // Current time
-  //$timestamp = time();
-  global $dbh;
-  // Get last_id
-  // $last_id = $_GET['last_id'];
 
-  // Database connection
-  /*$dbh = new PDO('sqlite:chat.db');
-  $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);*/
+  global $dbh;
+
   if (isset($_GET['listName']) && isset($_GET['teamName'])) {
     // GET username and text
     $listName = $_GET['listName'];
@@ -17,13 +10,22 @@
 
     // Insert Message
 
-    $idGroupQuery = $dbh->prepare("SELECT id FROM Team WHERE Team.name == ?");
-    $teamTable = $idGroupQuery->execute(array($teamName));
+    $idGroupQuery = $dbh->prepare("SELECT Team.id 
+      FROM Team JOIN User ON User.id == Team.idUser 
+      WHERE Team.name == ?");
+
+    $idGroupQuery->execute(array($teamName));
+    $teamTable = $idGroupQuery->fetch();
     $idTeam = $teamTable['id'];
 
 
     $stmt = $dbh->prepare("INSERT INTO List(name, idGroup) VALUES (?, ?)");
     $stmt->execute(array($listName, $idTeam));
+
+    $stmt = $dbh->prepare("SELECT * FROM List");
+    $stmt->execute();
+
+    print_r($stmt);
   }
 
   // Retrieve new messages
@@ -34,20 +36,17 @@
 
   $stmt->execute(array($_SESSION['username']));
   $messages = $stmt->fetchAll();
-  // print_r($messages);
-  //console_log($messages);
-  //die;
+
+
   for($i = 0; $i < sizeof($messages); $i++){
     $stmt = $dbh->prepare('SELECT Task.field
       FROM Task JOIN List ON Task.idList == List.id
       WHERE List.id == ?');
     $stmt->execute(array($messages[$i]['listId']));
     $tasks = $stmt->fetchAll();
-    $messages[$i]['tasks'][] = $tasks;
+    $messages[$i]['tasks'] = $tasks;
   }
 
-  // In order to get the most recent messages we have to reverse twice
-  //$messages = array_reverse($messages);
 
   // JSON encode
   echo json_encode($messages);

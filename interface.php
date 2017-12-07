@@ -24,12 +24,14 @@ checkValidSession();
               <div class="dropdown">
                 <span><button id="addButton"></button></span>
                 <div class="dropdown-content">
-                  <form>
+                  <form name="addListForm">
                     <input type="text" name="listName" id="listForm" placeholder="List Name"></input>
                     <select name="teamName" id="listForm">
-                      <? 
-                        //query php
-                      ?>
+	                  <?php 
+	                    foreach($_SESSION['teams'] as $team) {
+	                    	echo '<option value="' . $team . '">' . $team . '</option>';
+	                    }
+	                  ?>
                     </select>
                     <input type="submit" name="addButton" id="listFormSubmit" value="Create"></input>
                   </form>

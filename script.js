@@ -3,12 +3,12 @@
 // let listName = null;
 // let teamName = null;
 // Id of last message received
-//let last_id = -1
+//let last_id = -1 
 
 let container = document.querySelector('.notesContainer');
-let bt = document.getElementById('addButton');
+let form = document.querySelector('form[name=addListForm]');
 
-bt.addEventListener('click', addNote);
+form.addEventListener('submit', addNote);
 
 // Run refresh every 5s
 window.setInterval(refresh, 5000);
@@ -26,8 +26,8 @@ function refresh() {
 
 // Send message
 function addNote(event) {
-  listName = document.querySelector('input[name=listName]').value;
-  teamName = document.querySelector('input[name=teamName]').value;
+  let listName = document.querySelector('input[name=listName]').value;
+  let teamName = document.querySelector('select[name=teamName]').value;
 
   // // Delete sent message
   // document.querySelector('input[name=message]').value='';
@@ -54,6 +54,10 @@ function listsReceived() {
     line.classList.add('notes');
     line.innerHTML =
       '<h2>' + data.listName + ' - ' + data.teamName + '</h2>';
+
+    for(let i = 0; i < data.tasks.length; i++){
+      line.innerHTML += '<p>' + data.tasks[i].field + '</p>'; 
+    }
 
     container.append(line);
     container.scrollTop = container.scrollTopMax;
