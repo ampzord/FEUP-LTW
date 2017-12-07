@@ -13,8 +13,7 @@ CREATE TABLE User (
   username TEXT UNIQUE,
   email TEXT UNIQUE,
   phoneNumber INTEGER UNIQUE,
-  country TEXT UNIQUE,
-  timeZone INTEGER, --UTC Offset
+  country TEXT,
   fullName TEXT,
   birthDate DATE,
   passwordHash TEXT NOT NULL

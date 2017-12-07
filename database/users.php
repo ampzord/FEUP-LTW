@@ -18,11 +18,11 @@
 		$stmt->execute(array($username, $newPasswordHash));
   }
 
-  function updateProfile($email, $country, $fullName, $birthDate, $username) {
+  function updateProfile($email, $country, $fullName, $username) {
 		global $dbh;
-		$stmt = $dbh->prepare('UPDATE User SET email = ?, country = ?, fullName = ?, birthDate = ?
-     WHERE username = ?;');
-		$stmt->execute(array($email, $country, $fullName, $birthDate, $username));
+		$stmt = $dbh->prepare('UPDATE User SET email = ?, country = ?, fullName = ?
+    WHERE username = ?;');
+		$stmt->execute(array($email, $country, $fullName, $username));
 	}
 
   function getUserFullName($username) {
@@ -36,7 +36,6 @@
 	}
 
   function validFullName($fullName) {
-    //return (preg_match(           , $u
 		return (preg_match('/^\w{4,10}$/', $username) === 1);
 	}
 

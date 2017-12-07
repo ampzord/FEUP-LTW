@@ -2,15 +2,14 @@
 include_once('includes/init.php');
 include_once('database/users.php');
 
-/*
 //Check if session is set
 if (!isset($_SESSION['username'])) {
   header('Location: index.php');
   die();
-}*/
+}
 
-var_dump($_SESSION);
-die;
+//var_dump($_POST);
+//die;
 
 $username = $_SESSION['username'];
 
@@ -22,16 +21,15 @@ if(!password_verify($_POST['password'], $pass)){
 }*/
 
 
-
 //FULLNAME
-$fullName = null;
-if ($_POST['fullname'] !== '') {
-  $fullName = $_POST['fullName'];
-  if (!validFullName($username))
-    $fullName = getUserFullName($username);
-}
-else
-  $fullName = getUserFullName($username);
+//$fullName = null;
+//if ($_POST['fullname'] !== '') {
+$fullName = $_POST['fullname'];
+  //if (!validFullName($username))
+    //$fullName = getUserFullName($username);
+//}
+//else
+  //$fullName = getUserFullName($username);
 
 //EMAIl
 $email = $_POST['email'];
@@ -40,10 +38,10 @@ $email = $_POST['email'];
 $country = $_POST['country'];
 
 //BIRTHDATE
-$birthDate = $_POST['birth-date'];
+//$birthDate = $_POST['birth-date'];
 
 //update Profile
-updateProfile($fullName, $email, $country, $birthDate, $username);
+updateProfile($fullName, $email, $country, $username);
 
 //Update password
 if ($_POST['new-password'] !== '')

@@ -16,8 +16,9 @@
     <fieldset>
       <legend><strong>Edit Profile</strong></legend>
       <form id="edit-profile" method="post" action="action_edit_profile.php">
+        <input type="hidden" name="username" value="$_SESSION['username']"/>
         <label>Full Name
-            <input placeholder="Full Name" type="text" value="<?php echo $_SESSION['fullname'];?>" name="fullname" />
+            <input placeholder="Full Name" type="text" name="fullname" />
         </label>
         <label>Email
             <input type="email" name="email" />
