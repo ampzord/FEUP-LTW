@@ -14,13 +14,17 @@
     <br><br><br><br><br><br><br><br>
 
     <div id="profile-info">
-    <h2><?php echo $username;?>'s profile</h2>
-    <p>FullName: <?php echo $fullName;?></p>
-    <p>email <?php echo $email;?></p>
-    <p>phoneNumber <?php echo $phoneNumber;?></p>
-    <p>country <?php echo $country;?></p>
-    <p>birthDate <?php echo $birthDate;?></p>
-
+    <?php
+      include_once('database/users.php');
+      $userInfo = getUserInformation();
+      echo  '<h2>' . $userInfo['username'] . '\'s' . 'profile</h2>' .
+            '<p>FullName: ' . $userInfo['fullName'] . '</p>' .
+            '<p>Email: ' . $userInfo['email'] . '</p>' .
+            '<p>PhoneNumber: ' .  $userInfo['phoneNumber'] . '</p>' .
+            '<p>Country: ' . $userInfo['country'] . '</p>' .
+            '<p>BirthDate: ' . $userInfo['birthDate'] . '</p>';
+    ?>
+    <button class="editBtn" onclick="window.location.href='edit_profile.php'">Edit Profile</button>
     <button class="backbt" onclick="window.location.href='interface.php'">Back</button>
     <footer>
         <br><br>
@@ -29,13 +33,3 @@
     </footer>
   </body>
 </html>
-
-<?php
-if ($user === $_SESSION['username']) { ?>
-
-<form method="get" action="edit_profile.php">
-    <input type="hidden" name="username" value="<?php echo $user;?>"/>
-    <input type="submit" value="Edit Profile"/>
-</form>
-
-<?php } ?>

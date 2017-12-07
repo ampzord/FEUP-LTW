@@ -39,4 +39,11 @@
 		return (preg_match('/^\w{4,10}$/', $username) === 1);
 	}
 
+  function getUserInformation() {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT * from User WHERE username = ?');
+    $stmt->execute(array($_SESSION['username']));
+    return $stmt->fetch();
+  }
+
 ?>
