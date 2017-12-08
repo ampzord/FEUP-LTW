@@ -12,21 +12,27 @@
     </header>
 
     <br><br><br><br><br><br><br><br>
-
+    <?php
+      include_once('database/users.php');
+      $userInfo = getUserInformation();
+    ?>
     <fieldset>
       <legend><strong>Edit Profile</strong></legend>
       <form id="edit-profile" method="post" action="action_edit_profile.php">
         <input type="hidden" name="username" value="$_SESSION['username']"/>
         <label>Full Name
-            <input placeholder="Full Name" type="text" name="fullname" />
+            <input placeholder="Full Name" pattern="^([ \u00c0-\u01ffa-zA-Z\'\-])+$" type="text" value="<?= $userInfo['fullName'] ?>" name="fullname" />
         </label>
         <label>Email
-            <input type="email" name="email" />
+            <input type="email" value="<?= $userInfo['email'] ?>" name="email" />
         </label>
         <label>Birth Date
-            <input type="date" name="birth-date" />
+            <input type="date" value="<?= $userInfo['birthDate'] ?>" name="birth-date" />
         </label>
-        <select name="country">
+        <label>Phone Number
+            <input placeholder="Phone Number (Must be 9 digits)" pattern="^(\+\d{1,3})?\d{9}$" type="text" value="<?= $userInfo['phoneNumber'] ?>" name="phone-number" />
+        </label>
+        <select value="<?= $userInfo['country'] ?>" name="country">
           <option value="">Country</option>
           <option value="Afganistan">Afghanistan</option>
           <option value="Albania">Albania</option>
@@ -282,7 +288,7 @@
         </label>
         <br>
         <label>Current Password
-            <input placeholder="Current Password" type="password" name="current-password"/>
+            <input placeholder="Current Password" type="password" name="password"/>
         </label>
         <br>
         <center><input type="submit" value="Edit"/></center>
