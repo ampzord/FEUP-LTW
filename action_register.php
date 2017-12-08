@@ -1,5 +1,7 @@
 <?php
 include_once('includes/init.php');
+include_once('database/users.php');
+
 
   global $dbh;
   $stmt = $dbh->prepare('SELECT * FROM User WHERE username = ?');
@@ -20,5 +22,9 @@ include_once('includes/init.php');
   $stmt->execute(array($_POST['username'], $_POST['email'], $_POST['country'], $passHash));
 
   setCurrentUser($_POST['username']);
-  header('Location: interface.php');
+
+  createTeam($_SESSION['username'] . '\'s Team');
+  getUserTeams();
+
+  header('Location: interface.php'); 
 ?>

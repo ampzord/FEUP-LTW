@@ -18,7 +18,7 @@
           <input name="username" type="text" autocomplete="true" placeholder="*Username" required> <br>
           <input name="password" type="password" autocomplete="true" placeholder="*Password" required><br>
           <input name="passwordVerify" type="password" autocomplete="true" placeholder="*Verify Password" required><br>
-          <input name="email" type="text" autocomplete="true" placeholder="*E-mail" required><br>
+          <input name="email" type="email" autocomplete="true" placeholder="*E-mail" required><br>
 
           <select name="country">
             <option value="">Country</option>

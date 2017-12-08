@@ -59,4 +59,18 @@ include_once('includes/init.php');
     // die;
   }
 
+function getUserID(){
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT id from User WHERE username == ?');
+    $stmt->execute(array($_SESSION['username']));
+    return $stmt->fetch()['id'];
+  }
+
+function createTeam($teamName){
+    global $dbh;
+    $stmt = $dbh->prepare('INSERT INTO Team(name, color, idUser) VALUES (?,?,?)');
+    $stmt->execute(array($teamName, "#666", getUserID()));
+    // return lastInsertId($stmt);
+  }
+
 ?>
