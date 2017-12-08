@@ -12,6 +12,7 @@ checkValidSession();
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="script.js" defer></script>
+    <script src="logoutConfirm.js" defer></script>
   </head>
   <body>
 
@@ -27,7 +28,9 @@ checkValidSession();
                   <form name="addListForm">
                     <input type="text" name="listName" id="listForm" placeholder="List Name"></input>
                     <select name="teamName" id="listForm">
-	                  <?php 
+	                  <?php
+                      // print_r($_SESSION['teams']);
+                      // die;
 	                    foreach($_SESSION['teams'] as $team) {
 	                    	echo '<option value="' . $team . '">' . $team . '</option>';
 	                    }
@@ -49,13 +52,13 @@ checkValidSession();
               </div>
             </td>
             <td style="width:100%;">
-              <img alt="Just Do It!" style="width: 70px;" src="img/logoInterface.png">
+              <img alt="Just Do It!" style="width: 70px;" src="img/logoInterface.png" onclick="window.location.href='interface.php'">
             </td>
             <td>
               <button id="notificationButton"></button>
             </td>
             <td>
-              <button id="profileButton" onclick="window.location.href='logout.php'"><? echo strtoupper($_SESSION['username'][0]); ?></button>
+              <button id="profileButton" onclick="confirmLogout()"><? echo strtoupper($_SESSION['username'][0]); ?></button>
             </td>
           </tr>
         </table>

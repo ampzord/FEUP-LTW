@@ -7,12 +7,11 @@
     // GET username and text
     $listName = $_GET['listName'];
     $teamName = $_GET['teamName'];
-    $teamName = "testeTeam";
 
     // Insert Message
 
-    $idGroupQuery = $dbh->prepare("SELECT Team.id 
-      FROM Team JOIN User ON User.id == Team.idUser 
+    $idGroupQuery = $dbh->prepare("SELECT Team.id
+      FROM Team JOIN User ON User.id == Team.idUser
       WHERE Team.name == ?");
 
     $idGroupQuery->execute(array($teamName));
@@ -25,8 +24,6 @@
 
     $stmt = $dbh->prepare("SELECT * FROM List");
     $stmt->execute();
-
-    print_r($stmt);
   }
 
   // Retrieve new messages

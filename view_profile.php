@@ -17,7 +17,7 @@
     <?php
       include_once('database/users.php');
       $userInfo = getUserInformation();
-      echo  '<h2>' . $userInfo['username'] . '\'s' . 'profile</h2>' .
+      echo  '<h2>' . $userInfo['username'] . '\'s' . ' profile</h2>' .
             '<p>FullName: ' . $userInfo['fullName'] . '</p>' .
             '<p>Email: ' . $userInfo['email'] . '</p>' .
             '<p>PhoneNumber: ' .  $userInfo['phoneNumber'] . '</p>' .
