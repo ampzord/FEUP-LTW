@@ -76,10 +76,12 @@ table{
 }
 
 .defaultContainer{
-    padding-top: 55px;
+    padding-top: 80px;
 }
 
 .notesContainer{
+    padding-left: 30px;
+    padding-right: 30px;
     justify-content: space-between;
     align-self: flex-end;
     width: 100%;
@@ -126,14 +128,20 @@ td{
     padding:5px 5px 5px 5px;
 }
 
-.notes{
-    width: 225px;
+.notes{ 
+    top:0;
+    width: 100%;
+    max-width: 300px;
     background-color: #333;
     border-radius: 0px;
     color: #FFF;
     margin: 10px 10px 10px 10px;
     border: 2px;
     border-color: #666;
+}
+
+.notes table{
+    width:100%;
 }
 
 #searchButton, #searchButton:visited{

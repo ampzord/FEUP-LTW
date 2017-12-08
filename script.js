@@ -46,20 +46,26 @@ function addNote(event) {
 function listsReceived() {
   container.innerHTML = "";  //Clears container
   let lines = JSON.parse(this.responseText);
-   console.log(lines);
+
   lines.forEach(function(data){
     let line = document.createElement('div');
-    // console.log(line['tasks']);
-    //last_id = data.id;
+    let p = document.createElement('p');
+    let table = document.createElement('table');
 
     line.classList.add('notes');
-    line.innerHTML =
-      '<h2>' + data.listName + ' - ' + data.teamName + '</h2>';
+    line.innerHTML = '<h2>' + data.listName + ' - ' + data.teamName + '</h2>';
+
+    
+
 
     for(let i = 0; i < data.tasks.length; i++){
-      line.innerHTML += '<p>' + data.tasks[i].field + '</p>'; 
+      table.innerHTML += '<tr><td>' + data.tasks[i].field + '</td><td><input type="checkbox"></input><button></button></td></tr>';
     }
 
+    table.innerHTML += '<tr><input type="text" style="width:100px;" id="' + data.listId + '" placeholder="Add Task"></input></tr>'; 
+
+    p.append(table);
+    line.append(p);
     container.append(line);
     container.scrollTop = container.scrollTopMax;
   });
