@@ -2,11 +2,7 @@
 include_once('includes/init.php');
 include_once('database/users.php');
 
-//Check if session is set
-if (!isset($_SESSION['username'])) {
-  header('Location: index.php');
-  die();
-}
+checkValidSession();
 
 //var_dump($_POST);
 //die;
@@ -14,38 +10,59 @@ if (!isset($_SESSION['username'])) {
 $username = $_SESSION['username'];
 
 //check current Password
-/*$pass = getUserPassword($username);
+$pass = getUserPassword($username);
 if(!password_verify($_POST['password'], $pass)){
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     die();
-}*/
-
+}
 
 //FULLNAME
-//$fullName = null;
-//if ($_POST['fullname'] !== '') {
-$fullName = $_POST['fullname'];
-  //if (!validFullName($username))
-    //$fullName = getUserFullName($username);
-//}
-//else
-  //$fullName = getUserFullName($username);
+$fullName = null;
+if ($_POST['fullname'] !== '') {
+  $fullName = $_POST['fullname'];
+  if (!validFullName($fullName))
+    $fullName = getUserFullName($fullName);
+}
+else
+  $fullName = getUserFullName($fullName);
 
+//TODO needs regex
 //EMAIl
-$email = $_POST['email'];
+$email = null;
+if ($_POST['email'] !== '')
+  $email = $_POST['email'];
+else
+  $email = getUserEmail($email);
 
 //COUNTRY
-$country = $_POST['country'];
+$country = null;
+if ($_POST['country'] !== '')
+  $country = $_POST['country'];
+else
+  $country = getUserCountry($country);
 
 //BIRTHDATE
-//$birthDate = $_POST['birth-date'];
+$birthDate = null;
+if ($_POST['birth-date'] !== '')
+  $birthDate = $_POST['birth-date'];
+else
+  $birthDate = getUserBirthDate($birthDate);
+
+//PHONENUMBER
+$phoneNumber = null;
+if ($_POST['phone-number'] !== '')
+  $phoneNumber = $_POST['phone-number'];
+  if (!validPhoneNumber($phoneNumber))
+    $phoneNumber = getUserPhoneNumber($phoneNumber);
+else
+  $phoneNumber = getUserPhoneNumber($phoneNumber);
 
 //update Profile
-updateProfile($email, $country, $fullName, $username);
+updateProfile($email, $country, $fullName, $phoneNumber, $birthDate, $username);
 
 //Update password
 if ($_POST['new-password'] !== '')
     if ($_POST['new-password'] === $_POST['new-password-repeat'])
         updatePassword($username, $_POST['new-password']);
 
-header('Location: interface.php');
+header('Location: view_profile.php');

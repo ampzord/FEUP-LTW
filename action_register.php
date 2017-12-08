@@ -7,6 +7,11 @@ include_once('database/users.php');
   $stmt = $dbh->prepare('SELECT * FROM User WHERE username = ?');
   $stmt->execute(array($_POST['username']));
 
+  if (!validUsername($_POST['username']) {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    die();
+  }
+
   if($stmt->fetch()){
     echo 'Username ' . $_POST['username'] . ' already exists';
   }
@@ -15,9 +20,9 @@ include_once('database/users.php');
   }
 
   $passHash = password_hash ( $_POST['password'], PASSWORD_DEFAULT, []);
-    // echo "Password" . $_POST['password'] . " - Hash " . $passHash . " def: " . PASSWORD_DEFAULT;
+  // echo "Password" . $_POST['password'] . " - Hash " . $passHash . " def: " . PASSWORD_DEFAULT;
 
-// Insert na tabela
+  // Insert na tabela
   $stmt = $dbh->prepare('INSERT INTO User(username, email, country, passwordHash) VALUES (?, ?, ?, ?)');
   $stmt->execute(array($_POST['username'], $_POST['email'], $_POST['country'], $passHash));
 
@@ -26,5 +31,5 @@ include_once('database/users.php');
   createTeam($_SESSION['username'] . '\'s Team');
   getUserTeams();
 
-  header('Location: interface.php'); 
+  header('Location: interface.php');
 ?>

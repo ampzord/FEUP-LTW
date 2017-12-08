@@ -18,11 +18,11 @@
       include_once('database/users.php');
       $userInfo = getUserInformation();
       echo  '<h2>' . $userInfo['username'] . '\'s' . ' profile</h2>' .
-            '<p>FullName: ' . $userInfo['fullName'] . '</p>' .
+            '<p>Full Name: ' . $userInfo['fullName'] . '</p>' .
             '<p>Email: ' . $userInfo['email'] . '</p>' .
-            '<p>PhoneNumber: ' .  $userInfo['phoneNumber'] . '</p>' .
+            '<p>Phone Number: ' .  $userInfo['phoneNumber'] . '</p>' .
             '<p>Country: ' . $userInfo['country'] . '</p>' .
-            '<p>BirthDate: ' . $userInfo['birthDate'] . '</p>';
+            '<p>Birth Date: ' . $userInfo['birthDate'] . '</p>';
     ?>
     <button class="editBtn" onclick="window.location.href='edit_profile.php'">Edit Profile</button>
     <button class="backbt" onclick="window.location.href='interface.php'">Back</button>

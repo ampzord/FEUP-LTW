@@ -9,18 +9,28 @@ include_once('includes/init.php');
     return password_verify($_POST['password'], $pass['passwordHash']);
   }
 
+  function getUserPassword($username) {
+     global $dbh;
+     $stmt = $dbh->prepare('SELECT passwordHash FROM User WHERE username = ?');
+     $stmt->execute(array($username));
+     $pass = $stmt->fetch();
+     if (!$pass)
+         return false;
+     return $pass['passwordHash'];
+ }
+
   function updatePassword($username, $newPassword) {
     global $dbh;
     $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
     $stmt = $dbh->prepare('UPDATE User SET passwordHash = ? WHERE username = ?');
-		$stmt->execute(array($username, $newPasswordHash));
+		$stmt->execute(array($newPasswordHash, $username));
   }
 
-  function updateProfile($email, $country, $fullName, $username) {
+  function updateProfile($email, $country, $fullName, $phoneNumber, $birthDate, $username) {
 		global $dbh;
-		$stmt = $dbh->prepare('UPDATE User SET email = ?, country = ?, fullName = ?
+		$stmt = $dbh->prepare('UPDATE User SET email = ?, country = ?, fullName = ?, phoneNumber = ?, birthDate = ?
     WHERE username == ?');
-		$stmt->execute(array($email, $country, $fullName, $username));
+		$stmt->execute(array($email, $country, $fullName, $phoneNumber, $birthDate, $username));
 	}
 
   function getUserFullName($username) {
@@ -33,9 +43,45 @@ include_once('includes/init.php');
 		return $fullName['fullname'];
 	}
 
-  function validFullName($fullName) {
-		return (preg_match('/^\w{4,10}$/', $username) == 1);
-	}
+  function getUserEmail($username) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT email FROM User WHERE username == ?');
+    $stmt->execute(array($username));
+    $email = $stmt->fetch();
+    if (!$email)
+      return false;
+    return $email['email'];
+  }
+
+  function getUserBirthDate($username) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT birthDate FROM User WHERE username == ?');
+    $stmt->execute(array($username));
+    $birthDate = $stmt->fetch();
+    if (!$birthDate)
+      return false;
+    return $birthDate['$birth-date'];
+  }
+
+  function getUserPhoneNumber($username) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT phoneNumber FROM User WHERE username == ?');
+    $stmt->execute(array($username));
+    $phoneNumber = $stmt->fetch();
+    if (!$phoneNumber)
+      return false;
+    return $phoneNumber['$phone-number'];
+  }
+
+  function getUserCountry($username) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT country FROM User WHERE username == ?');
+    $stmt->execute(array($username));
+    $country = $stmt->fetch();
+    if (!$country)
+      return false;
+    return $country['$country'];
+  }
 
   function getUserInformation() {
     global $dbh;
@@ -71,6 +117,18 @@ function createTeam($teamName){
     $stmt = $dbh->prepare('INSERT INTO Team(name, color, idUser) VALUES (?,?,?)');
     $stmt->execute(array($teamName, "#666", getUserID()));
     // return lastInsertId($stmt);
+  }
+
+  function validPhoneNumber($phoneNumber) {
+    return (preg_match('/^(\+\d{1,3})?\d{9}$/', $phoneNumber) == 1);
+  }
+
+  function validUsername($username) {
+    return (preg_match('/[a-zA-Z]{3,15}/', $username) == 1);
+  }
+
+  function validFullName($fullName) {
+    return (preg_match('/^([ \u00c0-\u01ffa-zA-Z\'\-])+$/', $fullName) == 1);
   }
 
 ?>
