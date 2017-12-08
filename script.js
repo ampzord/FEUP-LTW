@@ -59,10 +59,12 @@ function listsReceived() {
 
 
     for(let i = 0; i < data.tasks.length; i++){
-      table.innerHTML += '<tr><td>' + data.tasks[i].field + '</td><td><input type="checkbox"></input><button></button></td></tr>';
+      table.innerHTML += '<tr style="height:40px;"><td style="background-color:#000; border-radius:0px; padding:10px 10px 10px 10px;"">'
+       + data.tasks[i].field + '</td><td><button name="done" id="doneButton"></button><button name="delete" id="deleteButton"></button></td></tr>';
     }
 
-    table.innerHTML += '<tr><input type="text" style="width:100px;" id="' + data.listId + '" placeholder="Add Task"></input></tr>'; 
+    table.innerHTML += '<tr><td style="width:100%;"><form><input type="text" id="' + data.listId + 
+                    '" placeholder="New Task"></input></td><td><input type="submit" name="addTask" value="Add"></input></form></td></tr>'; 
 
     p.append(table);
     line.append(p);

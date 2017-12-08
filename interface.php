@@ -16,10 +16,10 @@ checkValidSession();
   </head>
   <body>
 
-    <header class="interfaceHeader">
+    <header class="interfaceHeader" style="width: 100%;">
       <div class="headerContent">
 
-        <table>
+        <table style="width: 100%">
           <tr>
             <td>
               <div class="dropdown">
@@ -60,6 +60,7 @@ checkValidSession();
             <td>
               <button id="profileButton" onclick="confirmLogout()"><? echo strtoupper($_SESSION['username'][0]); ?></button>
             </td>
+            <td></td>
           </tr>
         </table>
 

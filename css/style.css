@@ -8,6 +8,7 @@ html{
 }
 
 table{
+    height: 100%;
     margin-right: 4px;
 }
 
@@ -57,6 +58,7 @@ table{
     z-index: 1;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .dropdown:hover .dropdown-content {
@@ -76,17 +78,18 @@ table{
 }
 
 .defaultContainer{
+    width: 100%;
     padding-top: 80px;
 }
 
 .notesContainer{
-    padding-left: 30px;
-    padding-right: 30px;
+    top: 0;
+    padding-left: 25px;
+    padding-right: 25px;
     justify-content: space-between;
-    align-self: flex-end;
-    width: 100%;
+    align-self:stretch;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: left;
     display: flex;
     flex: initial;
@@ -113,10 +116,16 @@ td{
 }
 
 .notes h2 {
-    padding: 10px 10px 10px 10px;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    margin-top: auto;
+    text-align: center;
+    padding: 15px 15px 15px 15px;
     background:#666;
     color:white;
-    font-size: 14px;
+    font-size: 16px;
     border-top-right-radius: 0px;
     border-top-left-radius: 0px;
     margin-top: -8px;
@@ -124,14 +133,20 @@ td{
 }
 
 .notes p {
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    appearance: none;
     color:#FFF;
     padding:5px 5px 5px 5px;
 }
 
 .notes{ 
-    top:0;
+    font-size: 14px;
+    text-align: left;
     width: 100%;
-    max-width: 300px;
+    max-width: 350px;
     background-color: #333;
     border-radius: 0px;
     color: #FFF;
@@ -142,6 +157,7 @@ td{
 
 .notes table{
     width:100%;
+    height: 100%;
 }
 
 #searchButton, #searchButton:visited{
@@ -197,17 +213,7 @@ td{
 }
 
 #addButton:hover, #addButton:active {
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    appearance: none !important;
-    width: 32px !important;
-    height: 32px !important;
     background-color: #666 !important;
-    background-image: url('../img/add.png') !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    border: none !important;
-    border-radius: 3px !important;
 }
 
 #notificationButton, #notificationButton:visited{
@@ -225,17 +231,44 @@ td{
 }
 
 #notificationButton:hover, #notificationButton:active {
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    appearance: none !important;
-    width:32px !important;
-    height: 32px !important;
     background-color: #c83025 !important;
-    background-image: url('../img/notification.png') !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    border: none !important;
-    border-radius: 3px !important;
+}
+
+#deleteButton, #deleteButton:visited{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width:40px;
+    height:40px;
+    background-color: #ad5252;
+    background-image: url('../img/delete.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    border-radius: 3px;
+}
+
+#deleteButton:hover, #deleteButton:active {
+    background-color: #c83025 !important;
+}
+
+#doneButton, #doneButton:visited{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width:40px;
+    height:40px;
+    background-color: #639f77;
+    background-image: url('../img/done.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+#doneButton:hover, #doneButton:active {
+    background-color: #309200 !important;
 }
 
 #profileButton, #profileButton:visited{
@@ -255,19 +288,7 @@ td{
 }
 
 #profileButton:hover, #profileButton:active {
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    appearance: none !important;
-    width:32px !important;
-    height: 32px !important;
     background-color: #309200 !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    border: none !important;
-    border-radius: 50px !important;
-    font-size: 14px;
-    color: #FFF !important;
-    text-shadow: 1px 1px 2px #000 !important;
 }
 
 .interfaceHeader{
@@ -341,6 +362,18 @@ input[type=text], select {
     box-sizing: border-box;
 }
 
+.notes input[type=text], select {
+    font-size: 14px;
+    height: 40px;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
 input[type=email], select {
     font-size: 14px;
     width: 100%;
@@ -404,6 +437,25 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
+    background-color: #45a049;
+    text-shadow: 1px 1px 3px #000;
+}
+
+.notes input[type=submit] {
+    height: 40px;
+    font-size: 16px;
+    width: 85px; 
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-shadow: 1px 1px 3px #000;
+}
+
+.notes input[type=submit]:hover {
     background-color: #45a049;
     text-shadow: 1px 1px 3px #000;
 }
