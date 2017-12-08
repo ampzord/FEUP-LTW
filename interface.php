@@ -66,7 +66,7 @@ checkValidSession();
 
     <div class="defaultContainer">
       <div class="notesContainer">
-        <!-- <?getAllListsFromUser();?> -->
+
       </div>
     </div>
 

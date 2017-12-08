@@ -10,6 +10,7 @@ let form = document.querySelector('form[name=addListForm]');
 
 form.addEventListener('submit', addNote);
 
+
 // Run refresh every 5s
 window.setInterval(refresh, 5000);
 

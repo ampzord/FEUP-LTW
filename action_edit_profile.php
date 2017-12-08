@@ -8,34 +8,44 @@ if (!isset($_SESSION['username'])) {
   die();
 }
 
-/*
-id INTEGER PRIMARY KEY,
-username TEXT UNIQUE,
-email TEXT UNIQUE,
-phoneNumber INTEGER UNIQUE,
-country TEXT UNIQUE,                 SIM
-timeZone INTEGER, --UTC Offset ????????????????
-fullName TEXT,
-birthDate DATE,                       ?
-passwordHash TEXT NOT NULL          SIM
-*/
+//var_dump($_POST);
+//die;
+
+$username = $_SESSION['username'];
+
+//check current Password
+/*$pass = getUserPassword($username);
+if(!password_verify($_POST['password'], $pass)){
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    die();
+}*/
 
 
-$fullName = $_POST['full-name'];
+//FULLNAME
+//$fullName = null;
+//if ($_POST['fullname'] !== '') {
+$fullName = $_POST['fullname'];
+  //if (!validFullName($username))
+    //$fullName = getUserFullName($username);
+//}
+//else
+  //$fullName = getUserFullName($username);
+
+//EMAIl
 $email = $_POST['email'];
-$phoneNumber = $_POST['phone-number'];
-$birthDate = $_POST['birth-date'];
-$country = $_POST['country'];
-updateProfile($fullName, $email, $phoneNumber, $birthDate, $country) {
 
-}
+//COUNTRY
+$country = $_POST['country'];
+
+//BIRTHDATE
+//$birthDate = $_POST['birth-date'];
+
+//update Profile
+updateProfile($email, $country, $fullName, $username);
 
 //Update password
-if ($_POST['new-password'] !== '') {
+if ($_POST['new-password'] !== '')
     if ($_POST['new-password'] === $_POST['new-password-repeat'])
-        changePassword($username, $_POST['new-password']);
+        updatePassword($username, $_POST['new-password']);
 
-
-
-
-?>
+header('Location: interface.php');

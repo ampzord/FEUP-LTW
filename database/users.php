@@ -9,16 +9,39 @@ include_once('includes/init.php');
     return password_verify($_POST['password'], $pass['passwordHash']);
   }
 
-  function changePassword($username, $newPassword) {
+  function updatePassword($username, $newPassword) {
     global $dbh;
     $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
-    $stmt = $db->prepare('UPDATE User SET passwordHash = ? WHERE username = ?');
+    $stmt = $dbh->prepare('UPDATE User SET passwordHash = ? WHERE username = ?');
 		$stmt->execute(array($username, $newPasswordHash));
   }
 
-  
-  function updateProfile() {
+  function updateProfile($email, $country, $fullName, $username) {
+		global $dbh;
+		$stmt = $dbh->prepare('UPDATE User SET email = ?, country = ?, fullName = ?
+    WHERE username = ?;');
+		$stmt->execute(array($email, $country, $fullName, $username));
+	}
 
+  function getUserFullName($username) {
+		global $dbh;
+		$stmt = $dbh->prepare('SELECT fullName FROM User WHERE username = ?');
+		$stmt->execute(array($username));
+		$fullName = $stmt->fetch();
+		if (!$fullName)
+			return false;
+		return $fullName['fullname'];
+	}
+
+  function validFullName($fullName) {
+		return (preg_match('/^\w{4,10}$/', $username) === 1);
+	}
+
+  function getUserInformation() {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT * from User WHERE username = ?');
+    $stmt->execute(array($_SESSION['username']));
+    return $stmt->fetch();
   }
 
   function getUserTeams(){

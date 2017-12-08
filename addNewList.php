@@ -7,6 +7,7 @@
     // GET username and text
     $listName = $_GET['listName'];
     $teamName = $_GET['teamName'];
+    $teamName = "testeTeam";
 
     // Insert Message
 

@@ -18,6 +18,8 @@ include_once('database/users.php');
     setCurrentUser($user['username']);
     getUserTeams();
     //$_SESSION['loginError'] = "";
+    $_SESSION['username'] = $_POST['username'];
+    //$_SESSION['fullname'] = $user['fullName'];
     header('Location: interface.php');
   }
   else {
