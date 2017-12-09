@@ -20,7 +20,7 @@
           <input name="passwordVerify" type="password" autocomplete="true" placeholder="*Verify Password" required><br>
           <input name="email" type="email" autocomplete="true" placeholder="*E-mail" required><br>
 
-          <select name="country">
+          <select name="country" required>
             <option value="">Country</option>
             <option value="Afganistan">Afghanistan</option>
             <option value="Albania">Albania</option>

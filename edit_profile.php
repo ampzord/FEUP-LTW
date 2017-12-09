@@ -32,7 +32,7 @@
         <label>Phone Number
             <input placeholder="Phone Number (Must be 9 digits)" pattern="^(\+\d{1,3})?\d{9}$" type="text" value="<?= $userInfo['phoneNumber'] ?>" name="phone-number" />
         </label>
-        <select value="<?= $userInfo['country'] ?>" name="country">
+        <select value="<?= $userInfo['country'] ?>" name="<?= $userInfo['country'] ?>">
           <option value="">Country</option>
           <option value="Afganistan">Afghanistan</option>
           <option value="Albania">Albania</option>
@@ -288,7 +288,7 @@
         </label>
         <br>
         <label>Current Password
-            <input placeholder="Current Password" type="password" name="password"/>
+            <input placeholder="Current Password" type="password" name="password" required="required"/>
         </label>
         <br>
         <center><input type="submit" value="Edit"/></center>

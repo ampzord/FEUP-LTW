@@ -120,15 +120,16 @@ function createTeam($teamName){
   }
 
   function validPhoneNumber($phoneNumber) {
-    return (preg_match('/^(\+\d{1,3})?\d{9}$/', $phoneNumber) == 1);
+    return preg_match('/^(\+\d{1,3})?\d{9}$/', $phoneNumber);
   }
 
   function validUsername($username) {
-    return (preg_match('/[a-zA-Z]{3,15}/', $username) == 1);
+    return preg_match('/^[0-9a-zA-Z]{3,15}$/', $username);
   }
 
   function validFullName($fullName) {
-    return (preg_match('/^([ \u00c0-\u01ffa-zA-Z\'\-])+$/', $fullName) == 1);
+    return preg_match('/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.\'-]*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.\'-]$/', $fullName);
+    //return preg_match('/^([ \u00c0-\u01ffa-zA-Z\'\-])+$/', $fullName);
   }
 
 ?>

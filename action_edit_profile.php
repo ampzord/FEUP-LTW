@@ -4,42 +4,35 @@ include_once('database/users.php');
 
 checkValidSession();
 
-//var_dump($_POST);
-//die;
+$userInfo = getUserInformation()
 
-$username = $_SESSION['username'];
+echo preg_match('/./', $k);
+die;
 
 //check current Password
-$pass = getUserPassword($username);
-if(!password_verify($_POST['password'], $pass)){
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+if(!password_verify($_POST['password'], $userInfo['passwordHash'])){
+    header('Location: view_profile.php');
     die();
 }
 
 //FULLNAME
-$fullName = null;
-if ($_POST['fullname'] !== '') {
-  $fullName = $_POST['fullname'];
-  if (!validFullName($fullName))
-    $fullName = getUserFullName($fullName);
+$fullName = $userInfo['fullName'];
+  if (validFullName($_POST['fullname']))
+    $fullName = $_POST['fullname'];
 }
-else
-  $fullName = getUserFullName($fullName);
 
 //TODO needs regex
 //EMAIl
-$email = null;
 if ($_POST['email'] !== '')
   $email = $_POST['email'];
 else
   $email = getUserEmail($email);
 
 //COUNTRY
-$country = null;
 if ($_POST['country'] !== '')
   $country = $_POST['country'];
 else
-  $country = getUserCountry($country);
+  $country = getUserCountry();
 
 //BIRTHDATE
 $birthDate = null;
