@@ -26,6 +26,25 @@
     $stmt->execute();
   }
 
+  if (isset($_GET['taskValue']) && isset($_GET['listId'])) {
+    // GET username and text
+    $listID = $_GET['listId'];
+    $taskValue = $_GET['taskValue'];
+
+    //Assert if the User has access to that list
+    $stmt = $dbh->prepare('SELECT *
+    FROM User JOIN Team ON User.id == Team.idUser
+    JOIN List ON Team.id == List.idGroup
+    WHERE User.username == ? AND List.id == ?');
+
+    $stmt->execute(array($_SESSION['username'], $listID));
+    if($stmt->fetch()){
+      $stmt = $dbh->prepare("INSERT INTO Task(field, idList) VALUES (?, ?)");
+      $stmt->execute(array($taskValue, $listID));
+    }
+    
+  }
+
   // Retrieve new messages
   $stmt = $dbh->prepare('SELECT List.id as listId, Team.name as teamName , List.name as listName
     FROM User JOIN Team ON User.id == Team.idUser
