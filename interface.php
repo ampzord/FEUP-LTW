@@ -1,6 +1,5 @@
 <?
 include_once('includes/init.php');
-include_once('listsAndTasks.php');
 checkValidSession();
 //getAllListsFromUser();
 ?>
@@ -27,7 +26,7 @@ checkValidSession();
                 <div class="dropdown-content">
                   <form name="addListForm">
                     <input type="text" name="listName" id="listForm" placeholder="List Name"></input>
-                    <select name="teamName" id="listForm">
+                    <select name="teamName" id="listForm" require="required">
 	                  <?php
                       // print_r($_SESSION['teams']);
                       // die;

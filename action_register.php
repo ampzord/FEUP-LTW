@@ -7,8 +7,8 @@ include_once('database/users.php');
   $stmt = $dbh->prepare('SELECT * FROM User WHERE username = ?');
   $stmt->execute(array($_POST['username']));
 
-  if (!validUsername($_POST['username']) {
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+  if (!validUsername($_POST['username'])) {
+    header('Location: interface.php');
     die();
   }
 
