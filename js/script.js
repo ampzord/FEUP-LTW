@@ -48,9 +48,6 @@ function listsReceived() {
   let lines = JSON.parse(this.responseText);
 
   lines.forEach(function(data){
-  	let userNav = document.createElement('div');
-  	userNav.classList('profileBar');
-  	userNav.innerHTML = 'Vaca do caralho';
 
     let line = document.createElement('div');
     let p = document.createElement('p');
@@ -72,8 +69,8 @@ function listsReceived() {
 
     p.append(table);
     line.append(p);
-    container.append(userNav);
-    // container.append(line);
+    
+    container.append(line);
     container.scrollTop = container.scrollTopMax;
   });
 }
