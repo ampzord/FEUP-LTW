@@ -10,8 +10,9 @@ checkValidSession();
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="script.js" defer></script>
-    <script src="logoutConfirm.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/logoutConfirm.js" defer></script>
+    <script src="js/dropDown.js" defer></script>
   </head>
   <body>
 
@@ -28,8 +29,6 @@ checkValidSession();
                     <input type="text" name="listName" id="listForm" placeholder="List Name"></input>
                     <select name="teamName" id="listForm" require="required">
 	                  <?php
-                      // print_r($_SESSION['teams']);
-                      // die;
 	                    foreach($_SESSION['teams'] as $team) {
 	                    	echo '<option value="' . $team . '">' . $team . '</option>';
 	                    }
@@ -51,13 +50,47 @@ checkValidSession();
               </div>
             </td>
             <td style="width:100%;">
-              <img alt="Just Do It!" style="width: 70px;" src="img/logoInterface.png" onclick="window.location.href='interface.php'">
+              <img alt="Just Do It!" style="width: 70px; cursor: pointer;" src="img/logoInterface.png" onclick="window.location.href='interface.php'">
             </td>
             <td>
               <button id="notificationButton"></button>
             </td>
             <td>
-              <button id="profileButton" onclick="confirmLogout()"><? echo strtoupper($_SESSION['username'][0]); ?></button>
+              <!-- <button id="profileButton" onclick="confirmLogout()"><? echo strtoupper($_SESSION['username'][0]); ?></button> -->
+              <div class="dropdown">
+                <span><button class="drop" onclick="dropDownProfile()" id="profileButton" ><? echo strtoupper($_SESSION['username'][0]); ?></button></span>
+                <div id="dropProfile" class="dropdownProfile-content">
+                  <table style="height:100px;">
+                    <tr>
+                      <td>
+                        <br>
+                        <img src="img/avatar.png" style="width:170px;" alt="avatar">
+                        <br><br>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <button id="navProfileBtTop" onClick="window.location='view_profile.php';">Profile</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                      <button id="navProfileBt">Teams</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                      <button id="navProfileBt">Credits</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                      <button id="navProfileBtBottom" onclick="confirmLogout()">Logout</button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
             </td>
             <td></td>
           </tr>
@@ -66,19 +99,25 @@ checkValidSession();
       </div>
     </header>
 
+    
+
 
     <div class="defaultContainer">
       <div class="notesContainer">
+        
 
       </div>
     </div>
 
-
-    <footer>
-      <br><br>
-      <a href="https://github.com/ampzord/FEUP-LTW">FEUP-LTW 2017-2018</a><br>
-      Francisco Silva | Rui Leixo | António Pereira | Todos os direitos reservados
-    </footer>
+<br><br>
+    <div class="foot">
+      <footer>
+              <br><br>
+        <a href="https://github.com/ampzord/FEUP-LTW">FEUP-LTW 2017-2018</a><br>
+        Francisco Silva | Rui Leixo | António Pereira | Todos os direitos reservados
+        <br><br>
+      </footer>
+    </div>
 
   </body>
 </html>
