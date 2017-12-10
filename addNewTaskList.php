@@ -3,6 +3,25 @@
 
   global $dbh;
 
+  if (isset($_GET['deleteTaskId'])) {
+    // GET username and text
+    $deleteTaskId = $_GET['deleteTaskId'];
+
+    $stmt = $dbh->prepare("DELETE FROM Task WHERE id == ?");
+    $stmt->execute(array($deleteTaskId));
+  }
+
+  if (isset($_GET['deleteAll'])) {
+    // GET username and text
+    $deleteListId = $_GET['deleteAll'];
+
+    $stmt = $dbh->prepare("DELETE FROM Task WHERE idList == ?");
+    $stmt->execute(array($deleteListId));
+
+    $stmt = $dbh->prepare("DELETE FROM List WHERE id == ?");
+    $stmt->execute(array($deleteListId));
+  }
+
   if (isset($_GET['listName']) && isset($_GET['teamName'])) {
     // GET username and text
     $listName = $_GET['listName'];
@@ -56,7 +75,7 @@
 
 
   for($i = 0; $i < sizeof($messages); $i++){
-    $stmt = $dbh->prepare('SELECT Task.field
+    $stmt = $dbh->prepare('SELECT Task.field, List.id as listId, Task.id as taskId
       FROM Task JOIN List ON Task.idList == List.id
       WHERE List.id == ?');
     $stmt->execute(array($messages[$i]['listId']));

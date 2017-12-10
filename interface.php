@@ -1,7 +1,6 @@
 <?
 include_once('includes/init.php');
 checkValidSession();
-//getAllListsFromUser();
 ?>
 
 <!DOCTYPE html>
@@ -23,11 +22,11 @@ checkValidSession();
           <tr>
             <td>
               <div class="dropdown">
-                <span><button id="addButton"></button></span>
-                <div class="dropdown-content">
+                <span><button id="addButton" onclick="dropDownAdd()" class="dropAdd"></button></span>
+                <div class="dropdown-contentAdd" id="dropAdd">
                   <form name="addListForm">
                     <input type="text" name="listName" id="listForm" placeholder="List Name"></input>
-                    <select name="teamName" id="listForm" require="required">
+                    <select name="teamName" id="listForm">
 	                  <?php
 	                    foreach($_SESSION['teams'] as $team) {
 	                    	echo '<option value="' . $team . '">' . $team . '</option>';
@@ -41,8 +40,8 @@ checkValidSession();
             </td>
             <td>
               <div class="dropdown">
-                <span><button id="searchButton"></button></span>
-                <div class="dropdown-content">
+                <span><button id="searchButton" onclick="dropDownSearch()" class="dropSearch"></button></span>
+                <div class="dropdown-contentSearch" id="dropSearch">
                   <form>
                     <input type="text" name="search" placeholder="Search here ..."></input>
                   </form>

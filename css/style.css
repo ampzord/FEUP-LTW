@@ -68,7 +68,6 @@ table{
 }
 
 .profileBar{
-    /*display: none;*/
     left: 0;
     height: 100%;
     width: 100%;
@@ -112,7 +111,7 @@ table{
     text-shadow: 1px 1px 3px #000;
 }
 
-.dropdown-content {
+.dropdown-contentAdd {
     display: none;
     position: absolute;
     background-color: #666;
@@ -120,14 +119,99 @@ table{
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding-left: 5px;
     padding-right: 5px;
-    z-index: 1;
+    z-index: 0;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px; 
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown-contentSearch {
+    display: none;
+    position: absolute;
+    background-color: #666;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding-left: 5px;
+    padding-right: 5px;
+    z-index: 2;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; 
+}
+
+.dropdown-contentEdit {
+    display: none;
+    position: absolute !important;
+    background-color: #fff;
+    width: 85px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding-left: 5px;
+    padding-right: 5px;
+    z-index: 2;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px; 
+}
+
+.dropdown:hover .dropdown-contentEdit{
     display: block;
 }
+
+#todoBt{
+    height: 40px;
+    font-size: 16px;
+    width: 85px; 
+    background-color: rgb(5, 118, 194);
+    color: white;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-shadow: 1px 1px 3px #000;
+}
+
+#todoBt:hover{
+    background-color: rgb(6, 90, 146);    
+}
+
+#doingBt{
+    height: 40px;
+    font-size: 16px;
+    width: 85px; 
+    background-color: rgb(255, 159, 32);
+    color: white;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-shadow: 1px 1px 3px #000;
+}
+
+#doingBt:hover{
+    background-color: rgb(241, 126, 31);
+}
+
+#doneBt{
+    height: 40px;
+    font-size: 16px;
+    width: 85px; 
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-shadow: 1px 1px 3px #000;
+}
+
+#doneBt:hover{
+    background-color: #309200 !important;
+}
+
+/* .dropdown:hover .dropdown-content {
+    display: block;
+} */
 
 .dropdownProfile-content{
     top: 45px;
@@ -144,9 +228,9 @@ table{
     text-align: center;
 }
 
-.dropdown:hover .dropdownProfile-content{
+/* .dropdown:hover .dropdownProfile-content{
     display: block;
-}
+} */
 
 .dropdownProfile-content table{
     width:100%;
@@ -332,6 +416,26 @@ td{
 
 #deleteButton:hover, #deleteButton:active {
     background-color: #c83025 !important;
+}
+
+#deleteAllButton, #deleteAllButton:visited{
+    cursor: pointer;
+    padding: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width:30px;
+    height:30px;
+    background-color: #666;
+    background-image: url('../img/deleteAll.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    border-radius: 3px;
+}
+
+#deleteAllButton:hover, #deleteAllButton:active {
+    background-color: #333 !important;
 }
 
 #doneButton, #doneButton:visited{
