@@ -58,37 +58,7 @@ checkValidSession();
               <!-- <button id="profileButton" onclick="confirmLogout()"><? echo strtoupper($_SESSION['username'][0]); ?></button> -->
               <div class="dropdown">
                 <span><button class="drop" onclick="dropDownProfile()" id="profileButton" ><? echo strtoupper($_SESSION['username'][0]); ?></button></span>
-                <div id="dropProfile" class="dropdownProfile-content">
-                  <table style="height:100px;">
-                    <tr>
-                      <td>
-                        <br>
-                        <img src="img/avatar.png" style="width:170px;" alt="avatar">
-                        <br><br>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <button id="navProfileBtTop" onClick="window.location='view_profile.php';">Profile</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                      <button id="navProfileBt">Teams</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                      <button id="navProfileBt">Credits</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                      <button id="navProfileBtBottom" onclick="confirmLogout()">Logout</button>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
+                
               </div>
             </td>
             <td></td>
@@ -106,6 +76,38 @@ checkValidSession();
         
 
       </div>
+    </div>
+
+    <div id="dropProfile" class="dropdownProfile-content">
+        <table style="height:100px;">
+        <tr>
+            <td>
+            <br>
+            <img src="img/avatar.png" style="width:170px;" alt="avatar">
+            <br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <button id="navProfileBtTop" onClick="window.location='view_profile.php';">Profile</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <button id="navProfileBt">Teams</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <button id="navProfileBt">Credits</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <button id="navProfileBtBottom" onclick="confirmLogout()">Logout</button>
+            </td>
+        </tr>
+        </table>
     </div>
 
 <br><br>
