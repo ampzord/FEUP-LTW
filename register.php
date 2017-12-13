@@ -4,6 +4,25 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <?php
+        if(isset($_GET['erro'])) 
+        {
+            if($_GET['erro'] == 'invalidUsername'){
+                echo "<script type='text/javascript'>alert('Invalid Username! Username should be between 3 and 15 characters.');</script>";
+            }
+            else if($_GET['erro'] == 'usernameExists'){
+                echo "<script type='text/javascript'>alert('Username Already Exists! Choose another one.');</script>";
+            }
+            else if($_GET['erro'] == 'password'){
+                echo "<script type='text/javascript'>alert('Passwords dont match!');</script>";
+            }
+            else if($_GET['erro'] == 'invalidEmail'){
+                echo "<script type='text/javascript'>alert('Invalid E-mail! Write a valid e-mail.');</script>";
+            }
+        }
+    ?>
+
   </head>
   <body>
 

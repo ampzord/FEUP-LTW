@@ -8,16 +8,23 @@ include_once('database/users.php');
   $stmt->execute(array($_POST['username']));
 
   if (!validUsername($_POST['username'])) {
-    header('Location: interface.php');
-    die();
+    header('Location: register.php?erro=invalidUsername');
+    die;
   }
 
   if($stmt->fetch()){
-    echo 'Username ' . $_POST['username'] . ' already exists';
+    header('Location: register.php?erro=usernameExists');
+    die;
+    
   }
-  if($_POST['password'] != $_POST['passwordVerify']){
-    echo 'The passwords didn\'t match';
+  if($_POST['password'] !== $_POST['passwordVerify']){
+    header('Location: register.php?erro=password');
+    die;
   }
+  if(!eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $_POST['email'])){
+    header('Location: register.php?erro=invalidEmail');
+    die;
+}
 
   $passHash = password_hash ( $_POST['password'], PASSWORD_DEFAULT, []);
   // echo "Password" . $_POST['password'] . " - Hash " . $passHash . " def: " . PASSWORD_DEFAULT;
