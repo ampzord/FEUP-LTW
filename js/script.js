@@ -1,17 +1,10 @@
 'use strict';
 
-// let listName = null;
-// let teamName = null;
-// Id of last message received
-let last_id = -1
-
 let container = document.querySelector('.notesContainer');
 let form = document.querySelector('form[name=addListForm]');
 let taskForms;
 let del;
 let delAll;
-// for(let i = 0; i < taskForms.length; i++)
-//   taskForms[i].addEventListener('submit', addTask);
 
 form.addEventListener('submit', addNote);
 
@@ -35,9 +28,6 @@ request.send();
 function addNote(event) {
   let listName = document.querySelector('input[name=listName]').value;
   let teamName = document.querySelector('select[name=teamName]').value;
-
-  // // Delete sent message
-  // document.querySelector('input[name=message]').value='';
 
   // Send message
   let request = new XMLHttpRequest();
@@ -84,48 +74,47 @@ function addTask(event) {
 
 // Called when messages are received
 function listsReceived() {
-  container.innerHTML = "";  //Clears container
+  //container.innerHTML = "";  //Clears container
   let lines = JSON.parse(this.responseText);
   let padding = 0;
-
+	let list;
+	let ite = 0;
+    //let lists =  document.querySelectorAll('button[id=deleteAllButton]');
   lines.forEach(function(data){
+    if(data.modified){
+        let line = document.createElement('div');
+        let p = document.createElement('p');
+        let table = document.createElement('table'); 
+        let taskForm = document.createElement('form');
 
-    let line = document.createElement('div');
-    let p = document.createElement('p');
-    let table = document.createElement('table'); 
-    let taskForm = document.createElement('form');
+        padding++;
 
-    padding++;
+        taskForm.name = 'addTaskForm';
 
-    taskForm.name = 'addTaskForm';
+        line.classList.add('notes');
+        line.innerHTML = '<h2><table><tr><td style="width:24px;"></td><td style="width:100%;">' 
+                                        + data.listName + ' - ' + data.teamName + '</td><td><button id="deleteAllButton" name="'+ data.listId +'"></button></td><tr></table></h2>';
 
-    line.classList.add('notes');
-    line.innerHTML = '<h2><table><tr><td style="width:24px;"></td><td style="width:100%;">' 
-                    + data.listName + ' - ' + data.teamName + '</td><td><button id="deleteAllButton" name="'+ data.listId +'"></button></td><tr></table></h2>';
+        for(let i = 0; i < data.tasks.length; i++){
+                table.innerHTML += '<tr style="height:40px;"><td style="background-color:#000; border-radius:0px; padding:10px 10px 10px 10px;"">'
+                        + data.tasks[i].field + '</td><td><div class="dropdown"><button name="done" id="doneButton" onclick="event.preventDefault();">'+
+                        '</button><div class="dropdown-contentEdit">' +
+                        '<button id="todoBt">To-do</button><button id="doingBt">Doing</button><button id="doneBt">Done</button>' +
+                        '</div></div><button name="'+ data.tasks[i].taskId +'" id="deleteButton"></button></td></tr>';
+                }
 
-    
+                table.innerHTML += '<tr><td style="width:100%;"><input type="text" id="' + 
+                                                        data.listId + 
+                                                        '" placeholder="New Task"></input></td><td><input type="submit" name="addTask" value="Add"></input></td></tr>';                   
 
+        p.append(table);
+        taskForm.append(p);
+        line.append(taskForm);
 
-    for(let i = 0; i < data.tasks.length; i++){
-        table.innerHTML += '<tr style="height:40px;"><td style="background-color:#000; border-radius:0px; padding:10px 10px 10px 10px;"">'
-            + data.tasks[i].field + '</td><td><div class="dropdown"><button name="done" id="doneButton" onclick="event.preventDefault();">'+
-            '</button><div class="dropdown-contentEdit">' +
-            '<button id="todoBt">To-do</button><button id="doingBt">Doing</button><button id="doneBt">Done</button>' +
-            '</div></div><button name="'+ data.tasks[i].taskId +'" id="deleteButton"></button></td></tr>';
-        }
-    
-        table.innerHTML += '<tr><td style="width:100%;"><input type="text" id="' + 
-                            data.listId + 
-                            '" placeholder="New Task"></input></td><td><input type="submit" name="addTask" value="Add"></input></td></tr>';                   
-
-    p.append(table);
-    taskForm.append(p);
-    line.append(taskForm);
-    
-    container.append(line);
-
-    // container.scrollTop = container.scrollTopMax;
-  });
+        container.append(line);
+    }
+	
+    });
 
     taskForms = document.querySelectorAll('form[name=addTaskForm]');
     for(let i = 0; i < taskForms.length; i++)

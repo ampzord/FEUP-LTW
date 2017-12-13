@@ -3,6 +3,8 @@
 
   global $dbh;
 
+  let idListModified = 0;
+
   if (isset($_GET['deleteTaskId'])) {
     // GET username and text
     $deleteTaskId = $_GET['deleteTaskId'];
@@ -60,7 +62,10 @@
     if($stmt->fetch()){
       $stmt = $dbh->prepare("INSERT INTO Task(field, idList) VALUES (?, ?)");
       $stmt->execute(array($taskValue, $listID));
+      idListModified = $listID;
     }
+
+ 
     
   }
 
@@ -81,8 +86,11 @@
     $stmt->execute(array($messages[$i]['listId']));
     $tasks = $stmt->fetchAll();
     $messages[$i]['tasks'] = $tasks;
+    $messages[$i]['modified'] = 0; 
   }
 
+  if(idListModified != 0)
+    $messages[idListModified - 1]['modified'] = 1;
 
   // JSON encode
   echo json_encode($messages);
