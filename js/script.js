@@ -2,6 +2,7 @@
 
 let container = document.querySelector('.notesContainer');
 let form = document.querySelector('form[name=addListForm]');
+let searchFormInput = document.querySelector('input[id=ajax]');
 let taskForms;
 let del;
 let delAll;
@@ -10,6 +11,7 @@ let todoBt;
 let doingBt;
 
 form.addEventListener('submit', addNote);
+searchFormInput.addEventListener('keyup', searchTask);
 
 // Run refresh every 5s
 window.setInterval(refresh, 5000);
@@ -37,6 +39,18 @@ function addNote(event) {
   // Send message
   let request = new XMLHttpRequest();
   request.open('get', 'addNewTaskList.php?' + encodeForAjax({'listName': listName, 'teamName': teamName}), true);
+  request.addEventListener('load', listsReceived);
+  request.send();
+
+  event.preventDefault();
+}
+
+// Search Task
+function searchTask(event) {
+		modified = 1;
+	// Send message
+  let request = new XMLHttpRequest();
+  request.open('get', 'addNewTaskList.php?' + encodeForAjax({'taskField': searchFormInput.value}), true);
   request.addEventListener('load', listsReceived);
   request.send();
 

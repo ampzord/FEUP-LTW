@@ -51,3 +51,21 @@ window.onclick = function(event) {
     }
   }
 }
+
+function dropDownSearcmjyuh() {
+    document.getElementById("dropSearchgmg").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropSearchjhjh')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-contentSearchytyt");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}

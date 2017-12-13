@@ -43,7 +43,7 @@ checkValidSession();
                 <span><button id="searchButton" onclick="dropDownSearch()" class="dropSearch"></button></span>
                 <div class="dropdown-contentSearch" id="dropSearch">
                   <form>
-                    <input type="text" name="search" placeholder="Search here ..."></input>
+                    <input type="text" id="ajax" name="search" placeholder="Search here ..."></input>
                   </form>
                 </div>
               </div>

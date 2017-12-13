@@ -76,16 +76,35 @@
     
   }
 
-  // Retrieve new messages
-  $stmt = $dbh->prepare('SELECT List.id as listId, Team.name as teamName , List.name as listName
+  // Retrieve Lists
+  if(isset($_GET['taskField']) && $_GET['taskField'] != ''){
+    $fieldRgx = "%" . $_GET['taskField'] . "%";
+    
+    $stmt = $dbh->prepare('SELECT DISTINCT List.id as listId, Team.name as teamName , List.name as listName
+    FROM User JOIN Team ON User.id == Team.idUser
+    JOIN List ON Team.id == List.idGroup
+    JOIN Task ON Task.idList == List.id
+    WHERE User.username == :uName AND Task.field LIKE :regex
+    GROUP BY(List.id)');
+
+    $stmt->bindParam(':uName', $_SESSION['username'], PDO::PARAM_STR);
+    $stmt->bindParam(':regex', $fieldRgx, PDO::PARAM_STR);
+    $stmt->execute();
+    
+    $messages = $stmt->fetchAll();
+  } 
+  else{
+    $stmt = $dbh->prepare('SELECT List.id as listId, Team.name as teamName , List.name as listName
     FROM User JOIN Team ON User.id == Team.idUser
     JOIN List ON Team.id == List.idGroup
     WHERE User.username == ?');
 
-  $stmt->execute(array($_SESSION['username']));
-  $messages = $stmt->fetchAll();
+    $stmt->execute(array($_SESSION['username']));
+    $messages = $stmt->fetchAll();
+  }
+  
 
-
+  //Retrieve tasks for all ,ists in $messages
   for($i = 0; $i < sizeof($messages); $i++){
     $stmt = $dbh->prepare('SELECT Task.field, Task.doneState, List.id as listId, Task.id as taskId
       FROM Task JOIN List ON Task.idList == List.id
