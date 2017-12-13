@@ -1,4 +1,5 @@
 <?php
+
 include_once('includes/init.php');
 include_once('database/users.php');
 
@@ -59,3 +60,5 @@ if ($_POST['new-password'] !== '')
         updatePassword($username, $_POST['new-password']);
 
 header('Location: view_profile.php');
+
+?>
