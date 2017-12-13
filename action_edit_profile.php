@@ -4,51 +4,40 @@ include_once('database/users.php');
 
 checkValidSession();
 
-$userInfo = getUserInformation()
-
-echo preg_match('/./', $k);
-die;
+$userInfo = getUserInformation();
 
 //check current Password
-if(!password_verify($_POST['password'], $userInfo['passwordHash'])){
+if(!password_verify($_POST['password'], $userInfo['passwordHash'])) {
     header('Location: view_profile.php');
     die();
 }
 
 //FULLNAME
 $fullName = $userInfo['fullName'];
-  if (validFullName($_POST['fullname']))
-    $fullName = $_POST['fullname'];
-}
+if (validFullName($_POST['fullname']))
+  $fullName = $_POST['fullname'];
 
-//TODO needs regex
-//EMAIl
+//EMAIL
+$email = $userInfo['email'];
 if ($_POST['email'] !== '')
   $email = $_POST['email'];
-else
-  $email = getUserEmail($email);
 
 //COUNTRY
+$country = $userInfo['country'];
 if ($_POST['country'] !== '')
   $country = $_POST['country'];
-else
-  $country = getUserCountry();
 
 //BIRTHDATE
-$birthDate = null;
+$birthDate = $userInfo['birthDate'];
 if ($_POST['birth-date'] !== '')
   $birthDate = $_POST['birth-date'];
-else
-  $birthDate = getUserBirthDate($birthDate);
 
 //PHONENUMBER
-$phoneNumber = null;
-if ($_POST['phone-number'] !== '')
+$phoneNumber = $userInfo['phoneNumber'];
+if (validPhoneNumber($_POST['phone-number']))
   $phoneNumber = $_POST['phone-number'];
-  if (!validPhoneNumber($phoneNumber))
-    $phoneNumber = getUserPhoneNumber($phoneNumber);
-else
-  $phoneNumber = getUserPhoneNumber($phoneNumber);
+
+$username = $_SESSION['username'];
 
 //update Profile
 updateProfile($email, $country, $fullName, $phoneNumber, $birthDate, $username);

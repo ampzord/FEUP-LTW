@@ -39,8 +39,12 @@
 
     // Insert Message
 
-    $idGroupQuery = $dbh->prepare("SELECT Team.id
+   /* $idGroupQuery = $dbh->prepare("SELECT Team.id
       FROM Team JOIN User ON User.id == Team.idUser
+      WHERE Team.name == ?");*/
+      $idGroupQuery = $dbh->prepare("SELECT Team.id
+      FROM Team JOIN TeamMember ON Team.id == TeamMember.idTeam
+      JOIN User ON User.id == TeamMember.idUser
       WHERE Team.name == ?");
 
     $idGroupQuery->execute(array($teamName));
@@ -61,19 +65,23 @@
     $taskValue = $_GET['taskValue'];
 
     //Assert if the User has access to that list
-    $stmt = $dbh->prepare('SELECT *
+    /*$stmt = $dbh->prepare('SELECT *
     FROM User JOIN Team ON User.id == Team.idUser
     JOIN List ON Team.id == List.idGroup
+    WHERE User.username == ? AND List.id == ?');*/
+
+    $stmt = $dbh->prepare('SELECT *
+    FROM User JOIN TeamMember ON User.id == TeamMember.idUser
+    JOIN Team ON Team.id == TeamMember.idTeam
+    JOIN List ON Team.id == List.idGroup
     WHERE User.username == ? AND List.id == ?');
+
 
     $stmt->execute(array($_SESSION['username'], $listID));
     if($stmt->fetch()){
       $stmt = $dbh->prepare("INSERT INTO Task(field, doneState, idList) VALUES (?, ?, ?)");
       $stmt->execute(array($taskValue, 0, $listID));
-    }
-
- 
-    
+    }    
   }
 
   // Retrieve Lists
@@ -81,7 +89,8 @@
     $fieldRgx = "%" . $_GET['taskField'] . "%";
     
     $stmt = $dbh->prepare('SELECT DISTINCT List.id as listId, Team.name as teamName , List.name as listName
-    FROM User JOIN Team ON User.id == Team.idUser
+    FROM User JOIN TeamMember ON User.id == TeamMember.idUser
+    JOIN Team ON TeamMember.idTeam == Team.id
     JOIN List ON Team.id == List.idGroup
     JOIN Task ON Task.idList == List.id
     WHERE User.username == :uName AND Task.field LIKE :regex
@@ -95,7 +104,8 @@
   } 
   else{
     $stmt = $dbh->prepare('SELECT List.id as listId, Team.name as teamName , List.name as listName
-    FROM User JOIN Team ON User.id == Team.idUser
+    FROM User JOIN TeamMember ON User.id == TeamMember.idUser
+    JOIN Team ON TeamMember.idTeam == Team.id
     JOIN List ON Team.id == List.idGroup
     WHERE User.username == ?');
 

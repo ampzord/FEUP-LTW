@@ -92,8 +92,13 @@ include_once('includes/init.php');
 
   function getUserTeams(){
     global $dbh;
-    $stmt = $dbh->prepare('SELECT Team.name FROM Team Join User ON Team.idUser == User.id WHERE User.username == ?');
+    /*$stmt = $dbh->prepare('SELECT Team.name FROM Team Join User ON Team.idUser == User.id WHERE User.username == ?');*/
+    $stmt = $dbh->prepare('SELECT Team.name 
+    FROM Team JOIN TeamMember ON TeamMember.idTeam == Team.id
+    Join User ON TeamMember.idUser == User.id
+    WHERE User.username == ?');
     $stmt->execute(array($_SESSION['username']));
+    
     $teamsTable = $stmt->fetchAll();
 
     $teamNames = array();
@@ -101,8 +106,6 @@ include_once('includes/init.php');
       array_push($teamNames, $val['name']);
     }
     $_SESSION['teams'] = $teamNames;
-    // var_dump($teamNames);
-    // die;
   }
 
 function getUserID(){
@@ -114,8 +117,8 @@ function getUserID(){
 
 function createTeam($teamName){
     global $dbh;
-    $stmt = $dbh->prepare('INSERT INTO Team(name, color, idUser) VALUES (?,?,?)');
-    $stmt->execute(array($teamName, "#666", getUserID()));
+    $stmt = $dbh->prepare('INSERT INTO Team(name) VALUES (?)');
+    $stmt->execute(array($teamName));
     // return lastInsertId($stmt);
   }
 
@@ -124,12 +127,11 @@ function createTeam($teamName){
   }
 
   function validUsername($username) {
-    return preg_match('/^[0-9a-zA-Z]{3,15}$/', $username);
+    return preg_match('/^[a-zA-Z][0-9a-zA-Z]{2,14}$/', $username);
   }
 
   function validFullName($fullName) {
     return preg_match('/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.\'-]*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.\'-]$/', $fullName);
-    //return preg_match('/^([ \u00c0-\u01ffa-zA-Z\'\-])+$/', $fullName);
   }
 
 ?>

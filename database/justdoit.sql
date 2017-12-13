@@ -7,12 +7,13 @@ DROP TABLE IF EXISTS User;
 DROP TABLE IF EXISTS Team;
 DROP TABLE IF EXISTS List;
 DROP TABLE IF EXISTS Task;
+DROP TABLE IF EXISTS TeamMember;
 
 CREATE TABLE User (
   id INTEGER PRIMARY KEY,
   username TEXT UNIQUE,
   email TEXT UNIQUE,
-  phoneNumber INTEGER UNIQUE,
+  phoneNumber TEXT UNIQUE,
   country TEXT,
   fullName TEXT,
   birthDate DATE,
@@ -21,9 +22,14 @@ CREATE TABLE User (
 
 CREATE TABLE Team (
   id INTEGER PRIMARY KEY,
-  name TEXT UNIQUE,
-  color TEXT,
-  idUser INTEGER REFERENCES User(id)
+  name TEXT UNIQUE
+  --idUser INTEGER REFERENCES User(id)
+);
+
+CREATE TABLE TeamMember (
+    idUser INTEGER REFERENCES User(id),
+    idTeam INTEGER REFERENCES Team(id),
+    PRIMARY KEY(idUser, idTeam)
 );
 
 CREATE TABLE List (
@@ -41,7 +47,10 @@ CREATE TABLE Task (
 
 -- Admin
 INSERT INTO User(id, username, fullName, passwordHash) VALUES (1, "admin", "Administrator","$2a$04$CxozQsTaY1Vs0UvWGBa9Y.PGlz8lLkpYmP9NeA87M5kE11DoD3QFG");
-INSERT INTO Team(id, name, idUser) VALUES (1, "Equipa do Admin", 1);
+--INSERT INTO Team(id, name, idUser) VALUES (1, "Equipa do Admin", 1);
+INSERT INTO Team(id, name) VALUES (1, "Equipa do Admin");
+
+INSERT INTO TeamMember(idUser, idTeam) VALUES (1,1);
 
 INSERT INTO List(id, name, idGroup) VALUES (1, "Lista 1 do Admin", 1);
 INSERT INTO List(id, name, idGroup) VALUES (2, "Lista 2 do Admin", 1);

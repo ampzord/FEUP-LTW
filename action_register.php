@@ -15,7 +15,10 @@ include_once('database/users.php');
   if($stmt->fetch()){
     echo 'Username ' . $_POST['username'] . ' already exists';
   }
-  if($_POST['password'] != $_POST['passwordVerify']){
+  /*var_dump($_POST['password']);
+  var_dump($_POST['passwordVerify']);
+  die;*/
+  if($_POST['password'] !== $_POST['passwordVerify']){
     echo 'The passwords didn\'t match';
   }
 
