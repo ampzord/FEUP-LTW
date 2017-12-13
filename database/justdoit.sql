@@ -35,6 +35,7 @@ CREATE TABLE List (
 CREATE TABLE Task (
   id INTEGER PRIMARY KEY,
   field TEXT NOT NULL,
+  doneState INTEGER NOT NULL,
   idList INTEGER REFERENCES List(id)
 );
 
@@ -45,8 +46,8 @@ INSERT INTO Team(id, name, idUser) VALUES (1, "Equipa do Admin", 1);
 INSERT INTO List(id, name, idGroup) VALUES (1, "Lista 1 do Admin", 1);
 INSERT INTO List(id, name, idGroup) VALUES (2, "Lista 2 do Admin", 1);
 
-INSERT INTO Task(id, field, idList) VALUES(1, "Task 1 da lista do Admin", 1);
-INSERT INTO Task(id, field, idList) VALUES(2, "Task 2 da lista do Admin", 1);
+INSERT INTO Task(id, field, doneState, idList) VALUES(1, "Task 1 da lista do Admin", 0, 1);
+INSERT INTO Task(id, field, doneState, idList) VALUES(2, "Task 2 da lista do Admin", 1, 1);
 
-INSERT INTO Task(id, field, idList) VALUES(3, "Task 1 da lista B do Admin", 2);
-INSERT INTO Task(id, field, idList) VALUES(4, "Task 2 da lista B do Admin", 2);
+INSERT INTO Task(id, field, doneState, idList) VALUES(3, "Task 1 da lista B do Admin", 1, 2);
+INSERT INTO Task(id, field, doneState, idList) VALUES(4, "Task 2 da lista B do Admin", 2, 2);

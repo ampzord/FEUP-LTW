@@ -3,6 +3,16 @@
 
   global $dbh;
 
+  if (isset($_GET['doneState']) && isset($_GET['taskId'])) {
+    // GET username and text
+    $doneState = $_GET['doneState'];
+    $taskId = $_GET['taskId'];
+
+
+    $stmt = $dbh->prepare("UPDATE Task SET doneState = ? WHERE Task.id == ?");
+    $stmt->execute(array($doneState, $taskId));
+  }
+
   if (isset($_GET['deleteTaskId'])) {
     // GET username and text
     $deleteTaskId = $_GET['deleteTaskId'];
@@ -58,8 +68,8 @@
 
     $stmt->execute(array($_SESSION['username'], $listID));
     if($stmt->fetch()){
-      $stmt = $dbh->prepare("INSERT INTO Task(field, idList) VALUES (?, ?)");
-      $stmt->execute(array($taskValue, $listID));
+      $stmt = $dbh->prepare("INSERT INTO Task(field, doneState, idList) VALUES (?, ?, ?)");
+      $stmt->execute(array($taskValue, 0, $listID));
     }
 
  
@@ -77,7 +87,7 @@
 
 
   for($i = 0; $i < sizeof($messages); $i++){
-    $stmt = $dbh->prepare('SELECT Task.field, List.id as listId, Task.id as taskId
+    $stmt = $dbh->prepare('SELECT Task.field, Task.doneState, List.id as listId, Task.id as taskId
       FROM Task JOIN List ON Task.idList == List.id
       WHERE List.id == ?');
     $stmt->execute(array($messages[$i]['listId']));
