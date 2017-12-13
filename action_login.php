@@ -22,9 +22,6 @@ include_once('database/users.php');
   }
   else {
     echo "Login Failed\n";
-		session_destroy();
-		session_set_cookie_params (432000, '/~up201504818/justdoit', 'www.gnomo.fe.up.pt', true,  true);
-    session_start();
     //$_SESSION['loginError'] = "Mensagem de Error";
     header('Location: index.php');
   }
