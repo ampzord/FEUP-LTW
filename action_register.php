@@ -2,6 +2,13 @@
 include_once('includes/init.php');
 include_once('database/users.php');
 
+if ($_SESSION['csrf'] !== $_POST['csrf']) {
+  header('Location: register.php');
+  die;
+}
+
+global $purifier;
+$_POST['username'] = $purifier->purify($_POST['username']);
 
   global $dbh;
   $stmt = $dbh->prepare('SELECT * FROM User WHERE username = ?');

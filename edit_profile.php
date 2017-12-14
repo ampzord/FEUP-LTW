@@ -60,7 +60,7 @@ checkValidSession();
     <div class="editTeam" >
       <legend><strong>Edit Profile</strong></legend>
       <form id="edit-profile" method="post" action="action_edit_profile.php">
-        <input type="hidden" name="username" value="$_SESSION['username']"/>
+        <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         <input placeholder="Full Name" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.\'-]*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.\'-]$" type="text" value="<?= $userInfo['fullName'] ?>" name="fullname" />
         <input type="email" value="<?= $userInfo['email'] ?>" name="email" />      
         <input type="date" value="<?= $userInfo['birthDate'] ?>" name="birth-date" />

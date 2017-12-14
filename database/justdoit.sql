@@ -47,10 +47,11 @@ CREATE TABLE Task (
 
 -- Admin
 INSERT INTO User(id, username, fullName, passwordHash) VALUES (1, "admin", "Administrator","$2a$04$CxozQsTaY1Vs0UvWGBa9Y.PGlz8lLkpYmP9NeA87M5kE11DoD3QFG");
---INSERT INTO Team(id, name, idUser) VALUES (1, "Equipa do Admin", 1);
+
 INSERT INTO Team(id, name) VALUES (1, "Equipa do Admin");
 
 INSERT INTO TeamMember(idUser, idTeam) VALUES (1,1);
+
 
 INSERT INTO List(id, name, idGroup) VALUES (1, "Lista 1 do Admin", 1);
 INSERT INTO List(id, name, idGroup) VALUES (2, "Lista 2 do Admin", 1);

@@ -1,6 +1,11 @@
   <?
   include_once('includes/init.php');
   checkValidSession();
+/*
+  if ($_SESSION['csrf'] !== $_GET['csrf']) {
+    echo json_encode(array());  
+    die;
+  }*/
 
   global $dbh;
 

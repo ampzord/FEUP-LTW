@@ -26,6 +26,7 @@ checkValidSession();
                 <span><button id="addButton" onclick="dropDownAdd()" class="dropAdd"></button></span>
                 <div class="dropdown-contentAdd" id="dropAdd">
                   <form name="addListForm">
+                    <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
                     <input type="text" autocomplete="off" name="listName" id="listForm" placeholder="List Name">
                     <select name="teamName" id="listForm">
 	                  <?php
@@ -44,6 +45,7 @@ checkValidSession();
                 <span><button id="searchButton" onclick="dropDownSearch()" class="dropSearch"></button></span>
                 <div class="dropdown-contentSearch" id="dropSearch">
                   <form>
+                    <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
                     <input type="text" id="ajax" name="search" placeholder="Search here ...">
                   </form>
                 </div>

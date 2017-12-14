@@ -3,6 +3,23 @@ include_once('includes/init.php');
 include_once('database/users.php');
 checkValidSession();
 
+global $purifier;
+
+$_POST['username'] = $purifier->purify($_POST['username']);
+$_POST["password"] = $purifier->purify($_POST["password"]);
+$_POST['fullname'] = $purifier->purify($_POST['fullname']);
+$_POST["email"] = $purifier->purify($_POST["email"]);
+$_POST['country'] = $purifier->purify($_POST['country']);
+$_POST["birth-date"] = $purifier->purify($_POST["birth-date"]);
+$_POST["phone-number"] = $purifier->purify($_POST["phone-number"]);
+$_POST["new-password"] = $purifier->purify($_POST["new-password"]);
+$_POST["new-password-repeat"] = $purifier->purify($_POST["new-password-repeat"]);
+
+if ($_SESSION['csrf'] !== $_POST['csrf']) {
+  header('Location: edit_profile.php');
+  die;
+}
+
 $userInfo = getUserInformation();
 
 //check current Password

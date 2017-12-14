@@ -38,12 +38,13 @@ if(isset($_GET['erro']))
     <div class="editTeam" >
         Add members to your team
         <form id="editTeamForm" method="post" action="manageTeams.php">
-        <select name="selectedTeam" required>
-            <option value="">Team</option>
-        </select>
-          <br>
-          <input name="userInvite" type="text" pattern="[a-zA-Z]{3,15}" autocomplete="off" placeholder="*Username to Invite" required> 
-          <input type="submit" name="createTeam" value="Add new">
+          <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
+          <select name="selectedTeam" required>
+              <option value="">Team</option>
+          </select>
+            <br>
+            <input name="userInvite" type="text" pattern="[a-zA-Z]{3,15}" autocomplete="off" placeholder="*Username to Invite" required> 
+            <input type="submit" name="createTeam" value="Add new">
         </form>
     </div>
 
@@ -52,6 +53,7 @@ if(isset($_GET['erro']))
     <div class="createTeam" >
         Create a new Team
         <form id="createTeamForm" method="post" action="manageTeams.php">
+          <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
           <input name="teamName" type="text" pattern="[a-zA-Z]{3,15}" autocomplete="off" placeholder="*Team Name (Must be Unique)" required> 
           <br>
           <input type="submit" name="createTeam" value="Create">

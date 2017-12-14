@@ -1,5 +1,9 @@
 <?
 include_once('includes/init.php');
+
+if(isset($_SESSION['username']))
+  header('Location: interface.php');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,7 +24,7 @@ include_once('includes/init.php');
 
   </head>
   <body>
-
+        
     <header>
       <img alt="Just Do It!" style="width: 200px;" src="img/logo.png">
     </header>
@@ -34,6 +38,7 @@ include_once('includes/init.php');
 
       <div class="loginForm">
         <form id="loginForm" method="post" action="action_login.php">
+          <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
           <input name="username" type="text" autocomplete="on" placeholder="Username" required>
           <input name="password" type="password" autocomplete="on" placeholder="Password" required>
           <input type="submit" value="Login">
