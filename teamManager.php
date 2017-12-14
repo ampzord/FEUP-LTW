@@ -1,6 +1,13 @@
 <?
 include_once('includes/init.php');
 checkValidSession();
+
+if(isset($_GET['erro'])) 
+{
+    if($_GET['erro'] == 'duplicatedTeamName'){
+        echo "<script type='text/javascript'>alert('Team name already exists, it must be UNIQUE! Try again.');</script>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,12 +37,12 @@ checkValidSession();
     
     <div class="editTeam" >
         Add members to your team
-        <form id="editTeamForm" method="post" action="addNewUserTeam.php">
+        <form id="editTeamForm" method="post" action="manageTeams.php">
         <select name="selectedTeam" required>
             <option value="">Team</option>
         </select>
           <br>
-          <input name="userInvite" type="text" pattern="[a-zA-Z]{3,15}" autocomplete="true" placeholder="*Username to Invite" required> 
+          <input name="userInvite" type="text" pattern="[a-zA-Z]{3,15}" autocomplete="off" placeholder="*Username to Invite" required> 
           <input type="submit" name="createTeam" value="Add new">
         </form>
     </div>
@@ -44,8 +51,8 @@ checkValidSession();
 
     <div class="createTeam" >
         Create a new Team
-        <form id="createTeamForm" method="post" action="addNewTeam.php">
-          <input name="teamName" type="text" pattern="[a-zA-Z]{3,15}" autocomplete="true" placeholder="*Team Name (Must be Unique)" required> 
+        <form id="createTeamForm" method="post" action="manageTeams.php">
+          <input name="teamName" type="text" pattern="[a-zA-Z]{3,15}" autocomplete="off" placeholder="*Team Name (Must be Unique)" required> 
           <br>
           <input type="submit" name="createTeam" value="Create">
         </form>

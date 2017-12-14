@@ -8,7 +8,6 @@ $userInfo = getUserInformation();
 //check current Password
 if(!password_verify($_POST['password'], $userInfo['passwordHash'])) {
     header('Location: view_profile.php');
-    die();
 }
 
 //FULLNAME

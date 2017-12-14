@@ -25,18 +25,11 @@ checkValidSession();
       <legend><strong>Edit Profile</strong></legend>
       <form id="edit-profile" method="post" action="action_edit_profile.php">
         <input type="hidden" name="username" value="$_SESSION['username']"/>
-        <label>
-            <input placeholder="Full Name" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.\'-]*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.\'-]$" type="text" value="<?= $userInfo['fullName'] ?>" name="fullname" />
-        </label>
-        <label>
-            <input type="email" value="<?= $userInfo['email'] ?>" name="email" />
-        </label>
-        <label>
-            <input type="date" value="<?= $userInfo['birthDate'] ?>" name="birth-date" />
-        </label>
-        <label>
-            <input placeholder="Phone Number (Must be 9 digits)" pattern="^(\+\d{1,3})?\d{9}$" type="text" value="<?= $userInfo['phoneNumber'] ?>" name="phone-number" />
-        </label>
+        <input placeholder="Full Name" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.\'-]*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.\'-]$" type="text" value="<?= $userInfo['fullName'] ?>" name="fullname" />
+        <input type="email" value="<?= $userInfo['email'] ?>" name="email" />      
+        <input type="date" value="<?= $userInfo['birthDate'] ?>" name="birth-date" />
+        <input placeholder="Phone Number (Must be 9 digits)" pattern="^(\+\d{1,3})?\d{9}$" type="text" value="<?= $userInfo['phoneNumber'] ?>" name="phone-number" />
+  
         <select name="country">
           <option value="<?= $userInfo['country'] ?>"><?= $userInfo['country'] ?></option>
           <option value="Afganistan">Afghanistan</option>
@@ -287,14 +280,10 @@ checkValidSession();
           <option value="Zambia">Zambia</option>
           <option value="Zimbabwe">Zimbabwe</option>
         </select>
-        <label>
             <input placeholder="New Password" type="password" name="new-password"/>
             <input placeholder="Repeat Password" type="password" name="new-password-repeat"/>
-        </label>
         <br>
-        <label>
             <input placeholder="Current Password" type="password" name="password" required="required"/>
-        </label>
         <br>
         <center><input type="submit" value="Edit"/></center>
         <button class="backbt" onclick="window.location.href='view_profile.php'">Back</button>
