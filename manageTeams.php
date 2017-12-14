@@ -23,10 +23,13 @@ if(isset($_POST['selectedTeam']) && isset($_POST['userInvite'])){
             header('Location: teamManager.php?erro=inexistingUser');
             die;
         }
-
+        try{
         $stmt = $dbh->prepare("INSERT INTO TeamMember(idUser, idTeam, accepted) VALUES(?, ?, 0)");
         $stmt->execute(array($usrID, $teamID));   
-
+        }catch(PDOException $e){
+          header('Location: teamManager.php?erro=alreadyExists');         
+          die;
+        }
         header('Location: teamManager.php?success=2');
         die;
     }

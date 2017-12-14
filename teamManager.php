@@ -10,11 +10,16 @@ if(isset($_GET['erro']))
         echo "<script type='text/javascript'>alert('Team name already exists, it must be UNIQUE! Try again.');</script>";
     }
     else if($_GET['erro'] == 'inexistingUser'){
-        echo "<script type='text/javascript'>alert('User doesn't exist! Try again.');</script>";
+        echo "<script type='text/javascript'>alert('User doesn\'t exist! Try again.');</script>";
     }
     if($_GET['erro'] == 'invalidTeam'){
-        echo "<script type='text/javascript'>alert('This team name doesn't exist! Try again.);</script>";
+        echo "<script type='text/javascript'>alert('This team name doesn\'t exist! Try again.');</script>";
     }
+
+    if($_GET['erro'] == 'alreadyExists'){
+      echo "<script type='text/javascript'>alert('User already in that team or pending invitation.');</script>";
+  }
+
 }
 if(isset($_GET['success'])) 
 {
