@@ -107,7 +107,7 @@ getUserTeams();
         </tr>
         <tr>
             <td>
-            <button id="navProfileBt" onClick="window.location='credits.php';">Credits</button>
+            <button id="navProfileBt" onClick="window.location='https://github.com/ampzord/FEUP-LTW';">GitHub</button>
             </td>
         </tr>
         <tr>
