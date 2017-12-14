@@ -9,6 +9,34 @@ checkValidSession();
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <?php
+        if(isset($_GET['erro'])) 
+        {
+            if($_GET['erro'] == 'fullName'){
+                echo "<script type='text/javascript'>alert('Invalid Name! Insert your full name.');</script>";
+            }
+            else if($_GET['erro'] == 'email'){
+                echo "<script type='text/javascript'>alert('Invalid E-mail! Insert correct e-mail.');</script>";
+            }
+            else if($_GET['erro'] == 'country'){
+                echo "<script type='text/javascript'>alert('Select a country!');</script>";
+            }
+            else if($_GET['erro'] == 'birthDate'){
+                echo "<script type='text/javascript'>alert('Birth-date is not in a valid format!');</script>";
+            }
+            else if($_GET['erro'] == 'phoneNumber'){
+                echo "<script type='text/javascript'>alert('Phone-number is not in a valid format!');</script>";
+            }
+            else if($_GET['erro'] == 'passwordMatch'){
+                echo "<script type='text/javascript'>alert('Passwords dont match! Insert equal passwords!');</script>";
+            }
+        }
+        else if(isset($_GET['success']))
+            if($_GET['success'] == '1')
+                echo "<script type='text/javascript'>alert('Profile successfully update!');</script>";
+    ?>
+
   </head>
   <body>
 
@@ -16,7 +44,15 @@ checkValidSession();
       <img alt="Just Do It! - Register" style="width: 200px;" src="img/logo.png">
     </header>
 
-    <br><br><br><br><br><br><br><br>
+    <br><br><br>
+    <br><br><br>
+    <br>
+    <div class="presentationBox">
+            Edit your <b>Profile</b>!<br> Let us know who you are!
+        </div>
+
+    <br><br>
+
     <?php
       include_once('database/users.php');
       $userInfo = getUserInformation();

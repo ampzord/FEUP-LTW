@@ -8,6 +8,31 @@ html{
     height: calc(100% - 80px);
 }
 
+.viewProfileBox{
+    text-align:left; 
+    background-color:#FFF; 
+    border-radius:10px; 
+    padding:10px;
+    border: 1px;
+    border-style: solid;
+    border-color: #ccc;
+}
+
+.viewProfileBox p{
+    color: #333;    
+    padding-top: 18px;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-top: 1px;
+    border-style: solid;    
+    border-color: #ccc;
+}
+.viewProfileBox c{
+    color: #333;
+    padding-top: 16px;
+}
+
 #navProfileBt {
     font-size: 21px;
     width: 100%;
