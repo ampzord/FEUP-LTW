@@ -1,5 +1,6 @@
 <?php
-
+include_once('includes/init.php');
+checkValidSession();
 if (isset($_POST['teamName'])){
     $teamName = $_POST['teamName'];
 

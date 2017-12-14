@@ -6,6 +6,7 @@ checkValidSession();
 <!DOCTYPE html>
 <html>
   <head>
+		<title>Just Do It!!</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,7 +26,7 @@ checkValidSession();
                 <span><button id="addButton" onclick="dropDownAdd()" class="dropAdd"></button></span>
                 <div class="dropdown-contentAdd" id="dropAdd">
                   <form name="addListForm">
-                    <input type="text" autocomplete="off" name="listName" id="listForm" placeholder="List Name"></input>
+                    <input type="text" autocomplete="off" name="listName" id="listForm" placeholder="List Name">
                     <select name="teamName" id="listForm">
 	                  <?php
 	                    foreach($_SESSION['teams'] as $team) {
@@ -33,7 +34,7 @@ checkValidSession();
 	                    }
 	                  ?>
                     </select>
-                    <input type="submit" name="addButton" id="listFormSubmit" value="Create"></input>
+                    <input type="submit" name="addButton" id="listFormSubmit" value="Create">
                   </form>
                 </div>
               </div>
@@ -43,7 +44,7 @@ checkValidSession();
                 <span><button id="searchButton" onclick="dropDownSearch()" class="dropSearch"></button></span>
                 <div class="dropdown-contentSearch" id="dropSearch">
                   <form>
-                    <input type="text" id="ajax" name="search" placeholder="Search here ..."></input>
+                    <input type="text" id="ajax" name="search" placeholder="Search here ...">
                   </form>
                 </div>
               </div>
@@ -94,12 +95,12 @@ checkValidSession();
         </tr>
         <tr>
             <td>
-            <button id="navProfileBt">Teams</button>
+            <button id="navProfileBt" onClick="window.location='teamManager.php';">Teams</button>
             </td>
         </tr>
         <tr>
             <td>
-            <button id="navProfileBt">Credits</button>
+            <button id="navProfileBt" onClick="window.location='credits.php';">Credits</button>
             </td>
         </tr>
         <tr>

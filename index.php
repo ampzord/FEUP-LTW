@@ -4,6 +4,7 @@ include_once('includes/init.php');
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Just Do It!!</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,8 +34,8 @@ include_once('includes/init.php');
 
       <div class="loginForm">
         <form id="loginForm" method="post" action="action_login.php">
-          <input name="username" type="text" autocomplete="true" placeholder="Username" required>
-          <input name="password" type="password" autocomplete="true" placeholder="Password" required>
+          <input name="username" type="text" autocomplete="on" placeholder="Username" required>
+          <input name="password" type="password" autocomplete="on" placeholder="Password" required>
           <input type="submit" value="Login">
         </form>
         <button class="backbt" onclick="window.location.href='register.php'">Register</button>

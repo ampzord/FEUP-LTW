@@ -1,5 +1,6 @@
   <?
   include_once('includes/init.php');
+  checkValidSession();
 
   global $dbh;
 
