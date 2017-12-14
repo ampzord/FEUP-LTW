@@ -23,7 +23,6 @@ CREATE TABLE User (
 CREATE TABLE Team (
   id INTEGER PRIMARY KEY,
   name TEXT UNIQUE
-  --idUser INTEGER REFERENCES User(id)
 );
 
 CREATE TABLE TeamMember (
@@ -49,16 +48,3 @@ CREATE TABLE Task (
 -- Admin
 INSERT INTO User(id, username, fullName, passwordHash) VALUES (1, "admin", "Administrator","$2a$04$CxozQsTaY1Vs0UvWGBa9Y.PGlz8lLkpYmP9NeA87M5kE11DoD3QFG");
 
-INSERT INTO Team(id, name) VALUES (1, "Equipa do Admin");
-
-INSERT INTO TeamMember(idUser, idTeam, accepted) VALUES (1, 1, 1);
-
-
-INSERT INTO List(id, name, idGroup) VALUES (1, "Lista 1 do Admin", 1);
-INSERT INTO List(id, name, idGroup) VALUES (2, "Lista 2 do Admin", 1);
-
-INSERT INTO Task(id, field, doneState, idList) VALUES(1, "Task 1 da lista do Admin", 0, 1);
-INSERT INTO Task(id, field, doneState, idList) VALUES(2, "Task 2 da lista do Admin", 1, 1);
-
-INSERT INTO Task(id, field, doneState, idList) VALUES(3, "Task 1 da lista B do Admin", 1, 2);
-INSERT INTO Task(id, field, doneState, idList) VALUES(4, "Task 2 da lista B do Admin", 2, 2);

@@ -48,8 +48,8 @@ getUserTeams();
                 <div class="dropdown-contentSearch" id="dropSearch">
                   <form>
                     <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
-                    <input type="text" id="ajax" name="search" placeholder="Search here ...">
-                  </form>
+                    <input type="text" id="ajax"  name="search" placeholder="Search here ...">
+                  </form onsubmit="event.preventDefault();">
                 </div>
               </div>
             </td>
