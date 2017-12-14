@@ -12,6 +12,8 @@ $_POST['username'] = $purifier->purify($_POST['username']);
 $_POST['password'] = $purifier->purify($_POST['password']);
 $_POST['passwordVerify'] = $purifier->purify($_POST['passwordVerify']);
 $_POST['email'] = $purifier->purify($_POST['email']);
+$_POST['country'] = $purifier->purify($_POST['country']);
+
 
   global $dbh;
   $stmt = $dbh->prepare('SELECT * FROM User WHERE username = ?');

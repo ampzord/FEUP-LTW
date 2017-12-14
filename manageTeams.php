@@ -9,10 +9,6 @@ if(isset($_POST['selectedTeam']) && isset($_POST['userInvite'])){
     $_POST['selectedTeam'] = $purifier->purify($_POST['selectedTeam']);
     $_POST['userInvite'] = $purifier->purify($_POST['userInvite']);
 
-
-
-
-    
     if(in_array($_POST['selectedTeam'], $_SESSION['teams'])){
         $stmt = $dbh->prepare("SELECT id FROM Team WHERE Team.name == ?");
         $stmt->execute(array($_POST['selectedTeam']));
