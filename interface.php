@@ -1,6 +1,8 @@
 <?
 include_once('includes/init.php');
+include_once('database/users.php');
 checkValidSession();
+getUserTeams();
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +57,12 @@ checkValidSession();
               <img alt="Just Do It!" style="width: 70px; cursor: pointer;" src="img/logoInterface.png" onclick="window.location.href='interface.php'">
             </td>
             <td>
-              <button id="notificationButton"></button>
+              <div class="dropdown">
+                <span><button id="notificationButton" onclick="dropDownNotification()" class="dropNotification"></button></span>
+                <div class="dropdown-contentNotification" id="dropNotification">
+                        No new notifications...
+                </div>
+            </div>
             </td>
             <td>
               <!-- <button id="profileButton" onclick="confirmLogout()"><? echo strtoupper($_SESSION['username'][0]); ?></button> -->
@@ -102,7 +109,7 @@ checkValidSession();
         </tr>
         <tr>
             <td>
-            <button id="navProfileBt" onClick="window.location='credits.php';">Credits</button>
+            <button id="navProfileBt" onClick="window.location='https://github.com/ampzord/FEUP-LTW';">GitHub</button>
             </td>
         </tr>
         <tr>

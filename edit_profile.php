@@ -16,6 +16,9 @@ checkValidSession();
             if($_GET['erro'] == 'fullName'){
                 echo "<script type='text/javascript'>alert('Invalid Name! Insert your full name.');</script>";
             }
+            else if($_GET['erro'] == 'passwordBad'){
+                echo "<script type='text/javascript'>alert('Current password is wrong!');</script>";
+            }
             else if($_GET['erro'] == 'email'){
                 echo "<script type='text/javascript'>alert('Invalid E-mail! Insert correct e-mail.');</script>";
             }
