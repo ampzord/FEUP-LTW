@@ -30,13 +30,18 @@ function refresh() {
 request.send();
 }
 
-// Send message
+
 function addNote(event) {
-	modified = 1;
+	event.preventDefault();
+	if(taskValue != '')
+		modified = 1;
+	else
+		return;
+
   let listName = document.querySelector('input[name=listName]').value;
   let teamName = document.querySelector('select[name=teamName]').value;
 
-  // Send message
+
   let request = new XMLHttpRequest();
   request.open('get', 'addNewTaskList.php?' + encodeForAjax({'listName': listName, 'teamName': teamName}), true);
   request.addEventListener('load', listsReceived);
@@ -45,10 +50,9 @@ function addNote(event) {
   event.preventDefault();
 }
 
-// Search Task
 function searchTask(event) {
 		modified = 1;
-	// Send message
+
   let request = new XMLHttpRequest();
   request.open('get', 'addNewTaskList.php?' + encodeForAjax({'taskField': searchFormInput.value}), true);
   request.addEventListener('load', listsReceived);
@@ -58,16 +62,21 @@ function searchTask(event) {
 }
 
 function addTask(event) {
-		modified = 1;	
+    event.preventDefault();
     let taskValue = event.target.querySelector('input[type=text]').value;
     let listId = event.target.querySelector('input[type=text]').id;
+
+    if(taskValue != '')
+        modified = 1;
+    else
+        return;
 
     let request = new XMLHttpRequest();
     request.open('get', 'addNewTaskList.php?' + encodeForAjax({'taskValue': taskValue, 'listId': listId}), true);
     request.addEventListener('load', listsReceived);
     request.send();
   
-    event.preventDefault();
+    
 	}
 
 	function parseDoneState(doneEnum){
@@ -121,7 +130,6 @@ function addTask(event) {
 
 // Called when messages are received
 function listsReceived() {
-  //container.innerHTML = "";  //Clears container
   let lines = JSON.parse(this.responseText);
   let padding = 0;
 	let list;
@@ -168,7 +176,7 @@ function listsReceived() {
 												'</div></div><button name="'+ data.tasks[i].taskId +'" id="deleteButton"></button></td></tr>';
                 }
 
-                table.innerHTML += '<tr><td style="width:100%;"><input type="text" id="' + 
+                table.innerHTML += '<tr><td style="width:100%;"><input autocomplete="off" type="text" id="' + 
                                     data.listId + 
                                     '" placeholder="New Task"></input></td><td><input type="submit" name="addTask" value="Add"></input></td></tr>';                   
 

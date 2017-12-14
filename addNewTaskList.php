@@ -3,8 +3,8 @@
 
   global $dbh;
 
+  //Changes task's doneState
   if (isset($_GET['doneState']) && isset($_GET['taskId'])) {
-    // GET username and text
     $doneState = $_GET['doneState'];
     $taskId = $_GET['taskId'];
 
@@ -13,16 +13,16 @@
     $stmt->execute(array($doneState, $taskId));
   }
 
+  //Deletes task
   if (isset($_GET['deleteTaskId'])) {
-    // GET username and text
     $deleteTaskId = $_GET['deleteTaskId'];
 
     $stmt = $dbh->prepare("DELETE FROM Task WHERE id == ?");
     $stmt->execute(array($deleteTaskId));
   }
 
+    //Deletes task all tasks from List
   if (isset($_GET['deleteAll'])) {
-    // GET username and text
     $deleteListId = $_GET['deleteAll'];
 
     $stmt = $dbh->prepare("DELETE FROM Task WHERE idList == ?");
@@ -32,12 +32,11 @@
     $stmt->execute(array($deleteListId));
   }
 
+	//Deletes task all tasks from List
   if (isset($_GET['listName']) && isset($_GET['teamName'])) {
     // GET username and text
     $listName = $_GET['listName'];
     $teamName = $_GET['teamName'];
-
-    // Insert Message
 
    /* $idGroupQuery = $dbh->prepare("SELECT Team.id
       FROM Team JOIN User ON User.id == Team.idUser
@@ -59,8 +58,8 @@
     $stmt->execute();
   }
 
+	//Inserts task
   if (isset($_GET['taskValue']) && isset($_GET['listId'])) {
-    // GET username and text
     $listID = $_GET['listId'];
     $taskValue = $_GET['taskValue'];
 
@@ -84,7 +83,7 @@
     }    
   }
 
-  // Retrieve Lists
+  // Retrieves Lists with tasks compliant to searchBar regex
   if(isset($_GET['taskField']) && $_GET['taskField'] != ''){
     $fieldRgx = "%" . $_GET['taskField'] . "%";
     
@@ -102,7 +101,7 @@
     
     $messages = $stmt->fetchAll();
   } 
-  else{
+  else{  // Retrieves all Lists from all user teams
     $stmt = $dbh->prepare('SELECT List.id as listId, Team.name as teamName , List.name as listName
     FROM User JOIN TeamMember ON User.id == TeamMember.idUser
     JOIN Team ON TeamMember.idTeam == Team.id
@@ -114,7 +113,7 @@
   }
   
 
-  //Retrieve tasks for all ,ists in $messages
+  //Retrieve tasks for all lists in $messages
   for($i = 0; $i < sizeof($messages); $i++){
     $stmt = $dbh->prepare('SELECT Task.field, Task.doneState, List.id as listId, Task.id as taskId
       FROM Task JOIN List ON Task.idList == List.id

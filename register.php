@@ -34,10 +34,10 @@
 
     <div class="registerForm">
         <form id="loginForm" method="post" action="action_register.php">
-          <input name="username" type="text" pattern="^[a-zA-Z][0-9a-zA-Z]{2,14}$" autocomplete="true" placeholder="*Username (Must be between 3 and 15 characters)" required> <br>
-          <input name="password" type="password" autocomplete="true" placeholder="*Password" required><br>
-          <input name="passwordVerify" type="password" autocomplete="true" placeholder="*Verify Password" required><br>
-          <input name="email" type="email" autocomplete="true" placeholder="*E-mail" required><br>
+          <input name="username" type="text" pattern="^[a-zA-Z][0-9a-zA-Z]{2,14}$" autocomplete="on" placeholder="*Username (Must be between 3 and 15 characters)" required> <br>
+          <input name="password" type="password" autocomplete="on" placeholder="*Password" required><br>
+          <input name="passwordVerify" type="password" autocomplete="on" placeholder="*Verify Password" required><br>
+          <input name="email" type="email" autocomplete="on" placeholder="*E-mail" required><br>
 
           <select name="country" required>
             <option value="">Country</option>

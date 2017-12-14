@@ -25,7 +25,7 @@ checkValidSession();
                 <span><button id="addButton" onclick="dropDownAdd()" class="dropAdd"></button></span>
                 <div class="dropdown-contentAdd" id="dropAdd">
                   <form name="addListForm">
-                    <input type="text" name="listName" id="listForm" placeholder="List Name"></input>
+                    <input type="text" autocomplete="off" name="listName" id="listForm" placeholder="List Name"></input>
                     <select name="teamName" id="listForm">
 	                  <?php
 	                    foreach($_SESSION['teams'] as $team) {
