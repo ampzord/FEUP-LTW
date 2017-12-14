@@ -21,8 +21,7 @@ include_once('database/users.php');
     header('Location: interface.php');
   }
   else {
-    echo "Login Failed\n";
-    //$_SESSION['loginError'] = "Mensagem de Error";
-    header('Location: index.php');
+    header('Location: index.php?erro=loginInvalid');
+    die;
   }
 ?>

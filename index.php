@@ -7,6 +7,16 @@ include_once('includes/init.php');
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <?php
+        if(isset($_GET['erro'])) 
+            {
+                if($_GET['erro'] == 'loginInvalid'){
+                    echo "<script type='text/javascript'>alert('Invalid Username or Password! Try again.');</script>";
+                }
+        }
+    ?>
+
   </head>
   <body>
 

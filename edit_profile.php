@@ -16,20 +16,20 @@
       include_once('database/users.php');
       $userInfo = getUserInformation();
     ?>
-    <fieldset>
+    <div class="editTeam" >
       <legend><strong>Edit Profile</strong></legend>
       <form id="edit-profile" method="post" action="action_edit_profile.php">
         <input type="hidden" name="username" value="$_SESSION['username']"/>
-        <label>Full Name
+        <label>
             <input placeholder="Full Name" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.\'-]*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.\'-]$" type="text" value="<?= $userInfo['fullName'] ?>" name="fullname" />
         </label>
-        <label>Email
+        <label>
             <input type="email" value="<?= $userInfo['email'] ?>" name="email" />
         </label>
-        <label>Birth Date
+        <label>
             <input type="date" value="<?= $userInfo['birthDate'] ?>" name="birth-date" />
         </label>
-        <label>Phone Number
+        <label>
             <input placeholder="Phone Number (Must be 9 digits)" pattern="^(\+\d{1,3})?\d{9}$" type="text" value="<?= $userInfo['phoneNumber'] ?>" name="phone-number" />
         </label>
         <select name="country">
@@ -282,20 +282,20 @@
           <option value="Zambia">Zambia</option>
           <option value="Zimbabwe">Zimbabwe</option>
         </select>
-        <label>Change Password
+        <label>
             <input placeholder="New Password" type="password" name="new-password"/>
             <input placeholder="Repeat Password" type="password" name="new-password-repeat"/>
         </label>
         <br>
-        <label>Current Password
+        <label>
             <input placeholder="Current Password" type="password" name="password" required="required"/>
         </label>
         <br>
         <center><input type="submit" value="Edit"/></center>
+        <button class="backbt" onclick="window.location.href='view_profile.php'">Back</button>
       </form>
-      </fieldset>
+      </div>
 
-    <button class="backbt" onclick="window.location.href='view_profile.php'">Back</button>
     <footer>
         <br><br>
         <a href="https://github.com/ampzord/FEUP-LTW">FEUP-LTW 2017-2018</a><br>

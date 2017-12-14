@@ -659,7 +659,7 @@ input[type=submit]:hover {
     left:0;
 }
 
-.registerForm{
+.registerForm, .editTeam, .createTeam{
     max-width: 400px;
     width: 80%;
     position: relative;
