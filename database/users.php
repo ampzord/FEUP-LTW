@@ -92,7 +92,6 @@ include_once('includes/init.php');
 
   function getUserTeams(){
     global $dbh;
-    /*$stmt = $dbh->prepare('SELECT Team.name FROM Team Join User ON Team.idUser == User.id WHERE User.username == ?');*/
     $stmt = $dbh->prepare('SELECT Team.name 
     FROM Team JOIN TeamMember ON TeamMember.idTeam == Team.id
     Join User ON TeamMember.idUser == User.id
@@ -124,7 +123,6 @@ function createTeam($teamName){
     
     $stmt = $dbh->prepare("INSERT INTO TeamMember(idUser, idTeam, accepted) VALUES(?, ?, 1)");
     $stmt->execute(array(getUserID(), $teamID)); 
-    // return lastInsertId($stmt);
   }
 
   function validPhoneNumber($phoneNumber) {

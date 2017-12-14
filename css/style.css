@@ -366,7 +366,7 @@ td{
     width: 100%;
     max-width: 350px;
     background-color: #333;
-    border-radius: 0px;
+    border-radius: 10px;
     color: #FFF;
     margin: 10px 10px 10px 10px;
     border: 2px;
@@ -573,7 +573,7 @@ body{
     /*background-image: url("../img/background.jpg");*/
     width: 100%;
     font-family: "Helvetica";
-    background-color: #999;
+    background-color: #bbb;
     text-align: center;
     padding-bottom: 60px;
     position:relative;

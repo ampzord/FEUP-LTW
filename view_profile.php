@@ -9,11 +9,16 @@ checkValidSession();
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
+
+    <? if(isset($_GET['success']))
+            if($_GET['success'] == '1')
+                echo "<script type='text/javascript'>alert('Profile successfully update!');</script>";
+  ?>
+ </head>
   <body>
 
     <header>
-      <img alt="Just Do It! - Register" style="width: 200px;" src="img/logo.png">
+      <img alt="Just Do It! - Register" style="width: 200px; cursor: pointer;" src="img/logo.png" onclick="window.location.href='interface.php' ">
     </header>
 
     <br><br><br>

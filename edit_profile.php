@@ -35,16 +35,13 @@ checkValidSession();
                 echo "<script type='text/javascript'>alert('Passwords dont match! Insert equal passwords!');</script>";
             }
         }
-        else if(isset($_GET['success']))
-            if($_GET['success'] == '1')
-                echo "<script type='text/javascript'>alert('Profile successfully update!');</script>";
     ?>
 
   </head>
   <body>
 
     <header>
-      <img alt="Just Do It! - Register" style="width: 200px;" src="img/logo.png">
+      <img alt="Just Do It! - Register" style="width: 200px;cursor: pointer;" src="img/logo.png" onclick="window.location.href='interface.php' ">
     </header>
 
     <br><br><br>
@@ -61,7 +58,6 @@ checkValidSession();
       $userInfo = getUserInformation();
     ?>
     <div class="editTeam" >
-      <legend><strong>Edit Profile</strong></legend>
       <form id="edit-profile" method="post" action="action_edit_profile.php">
         <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         <input placeholder="Full Name" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.\'-]*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð,.\'-]$" type="text" value="<?= $userInfo['fullName'] ?>" name="fullname" />

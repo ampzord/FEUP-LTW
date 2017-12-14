@@ -38,13 +38,13 @@ if(isset($_GET['success']))
   <body>
 
     <header>
-      <img alt="Just Do It! - Register" style="width: 200px;" src="img/logo.png">
+      <img alt="Just Do It! - Register" style="width: 200px; cursor: pointer;" onclick="window.location.href='interface.php'" src="img/logo.png"> 
+      
     </header>
 
     <br><br><br>
     <br><br><br>
     <br>
-
 
         <div class="presentationBox">
             Create your own <b>Team</b>!<br> Invite your friends and help each other!

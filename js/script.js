@@ -4,6 +4,7 @@ let container = document.querySelector('.notesContainer');
 let form = document.querySelector('form[name=addListForm]');
 let searchFormInput = document.querySelector('input[id=ajax]');
 let notificationBt = document.querySelector('#notificationButton');
+let ajaxTeams = document.querySelector('.ajaxTeams');
 
 let acceptNotificationBt;
 let declineNotificationBt;
@@ -15,10 +16,8 @@ let delAll;
 let doneBt;
 let todoBt;
 let doingBt;
-
-
-
-
+let notr;
+let flag;
 
 form.addEventListener('submit', addNote);
 searchFormInput.addEventListener('keyup', searchTask);
@@ -49,6 +48,8 @@ function newNotification(){
     let lines = JSON.parse(this.responseText);
     notificationContainer.innerHTML = '';
     let table = document.createElement('table');
+
+    
     
   
     lines.forEach(function(data){
@@ -67,25 +68,50 @@ function newNotification(){
     declineNotificationBt = document.querySelectorAll('#declineNotificationButton');
    
     acceptNotificationBt.forEach(function(data){
-      if(data != null)
-        data.addEventListener('click', acceptNotification);   
+      if(data != null){
+        notificationBt.style.backgroundColor = 'rgb(241, 126, 31)';
+        data.addEventListener('click', acceptNotification);
+      }
     });
 
     declineNotificationBt.forEach(function(data){
-      if(data != null)
+      if(data != null){
+        notificationBt.style.backgroundColor = 'rgb(241, 126, 31)';
         data.addEventListener('click', declineNotification);
+      }
     });
+
+    if(flag == 1){
+      notr = new XMLHttpRequest();
+      notr.open('get', 'ajaxTeams.php', true);
+      notr.addEventListener('load', teamAj);  
+      notr.send();
+      flag = 0
+    }
     
-    
+}
+
+function teamAj(){
+  let teams = JSON.parse(this.responseText);
+  
+      ajaxTeams.innerHTML = '';
+  
+      teams.forEach(function(data){
+        ajaxTeams.innerHTML += '<option value="' + data.team + '">' + data.team + '</option>';
+    });
 }
 
 function acceptNotification(event) {
     let teamId = event.currentTarget.name;
+    flag = 1;
 
 let request = new XMLHttpRequest();
     request.open('get', 'seeNotifications.php?' + encodeForAjax({'teamId': teamId, 'accepted': '1'}), true);
 request.addEventListener('load', newNotification);
 request.send();
+
+notificationBt.style.backgroundColor = '#ad5252';
+
 
 event.preventDefault();
 }
@@ -97,6 +123,8 @@ let request = new XMLHttpRequest();
     request.open('get', 'seeNotifications.php?' + encodeForAjax({'teamId': teamId, 'denied': '0'}), true);
 request.addEventListener('load', newNotification);
 request.send();
+
+notificationBt.style.backgroundColor = '#ad5252';
 
 event.preventDefault();
 }

@@ -30,7 +30,7 @@ getUserTeams();
                   <form name="addListForm">
                     <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
                     <input type="text" autocomplete="off" name="listName" id="listForm" placeholder="List Name">
-                    <select name="teamName" id="listForm">
+                    <select name="teamName" id="listForm" class="ajaxTeams">
 	                  <?php
 	                    foreach($_SESSION['teams'] as $team) {
 	                    	echo '<option value="' . $team . '">' . $team . '</option>';

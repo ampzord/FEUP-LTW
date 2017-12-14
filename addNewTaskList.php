@@ -1,14 +1,9 @@
   <?
   include_once('includes/init.php');
   checkValidSession();
-/*
-  if ($_SESSION['csrf'] !== $_GET['csrf']) {
-    echo json_encode(array());  
-    die;
-  }*/
-
+ 
   global $dbh;
-
+  
   //Changes task's doneState
   if (isset($_GET['doneState']) && isset($_GET['taskId'])) {
     $doneState = $_GET['doneState'];
@@ -40,17 +35,13 @@
 
 	//Deletes task all tasks from List
   if (isset($_GET['listName']) && isset($_GET['teamName'])) {
-    // GET username and text
     $listName = $_GET['listName'];
     $teamName = $_GET['teamName'];
 
-   /* $idGroupQuery = $dbh->prepare("SELECT Team.id
-      FROM Team JOIN User ON User.id == Team.idUser
-      WHERE Team.name == ?");*/
-      $idGroupQuery = $dbh->prepare("SELECT Team.id
-      FROM Team JOIN TeamMember ON Team.id == TeamMember.idTeam
-      JOIN User ON User.id == TeamMember.idUser
-      WHERE Team.name == ?");
+    $idGroupQuery = $dbh->prepare("SELECT Team.id
+    FROM Team JOIN TeamMember ON Team.id == TeamMember.idTeam
+    JOIN User ON User.id == TeamMember.idUser
+    WHERE Team.name == ?");
 
     $idGroupQuery->execute(array($teamName));
     $teamTable = $idGroupQuery->fetch();
@@ -68,12 +59,6 @@
   if (isset($_GET['taskValue']) && isset($_GET['listId'])) {
     $listID = $_GET['listId'];
     $taskValue = $_GET['taskValue'];
-
-    //Assert if the User has access to that list
-    /*$stmt = $dbh->prepare('SELECT *
-    FROM User JOIN Team ON User.id == Team.idUser
-    JOIN List ON Team.id == List.idGroup
-    WHERE User.username == ? AND List.id == ?');*/
 
     $stmt = $dbh->prepare('SELECT *
     FROM User JOIN TeamMember ON User.id == TeamMember.idUser

@@ -4,7 +4,7 @@
     
     checkValidSession();
 
-    global $dbh;
+    global $dbh;    
 
     if(isset($_GET['teamId']) && isset($_GET['accepted'])){
         $stmt = $dbh->prepare('UPDATE TeamMember SET accepted = 1
