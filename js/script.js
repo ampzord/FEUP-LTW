@@ -3,12 +3,22 @@
 let container = document.querySelector('.notesContainer');
 let form = document.querySelector('form[name=addListForm]');
 let searchFormInput = document.querySelector('input[id=ajax]');
+let notificationBt = document.querySelector('#notificationButton');
+
+let acceptNotificationBt;
+let declineNotificationBt;
+let notificationContainer = document.querySelector('.dropdown-contentNotification');
+
 let taskForms;
 let del;
 let delAll;
 let doneBt;
 let todoBt;
 let doingBt;
+
+
+
+
 
 form.addEventListener('submit', addNote);
 searchFormInput.addEventListener('keyup', searchTask);
@@ -25,22 +35,85 @@ refresh();
 function refresh() {
   let request = new XMLHttpRequest();
   request.open('get', 'addNewTaskList.php', true);
-  request.addEventListener('load', listsReceived);
+  request.addEventListener('load', listsReceived);  
+  request.send();
 
-request.send();
+  let notificationRequest = new XMLHttpRequest();
+  notificationRequest.open('get', 'seeNotifications.php', true);
+  notificationRequest.addEventListener('load', newNotification);  
+  notificationRequest.send();
+
 }
+
+function newNotification(){
+    let lines = JSON.parse(this.responseText);
+    notificationContainer.innerHTML = '';
+    let table = document.createElement('table');
+    
+  
+    lines.forEach(function(data){
+        let tr = document.createElement('tr');
+        tr.innerHTML = '<td>'+ data.teamName +
+        '</td><td><button id="acceptNotificationButton" onclick="event.preventDefault()" name="'+ data.teamId +
+        '"></td><td><button id="declineNotificationButton" onclick="event.preventDefault()" name="'+ data.teamId +
+        '"> </td>';
+
+        table.append(tr);
+    });
+
+    notificationContainer.append(table);
+
+    acceptNotificationBt = document.querySelectorAll('#acceptNotificationButton');
+    declineNotificationBt = document.querySelectorAll('#declineNotificationButton');
+   
+    acceptNotificationBt.forEach(function(data){
+      if(data != null)
+        data.addEventListener('click', acceptNotification);   
+    });
+
+    declineNotificationBt.forEach(function(data){
+      if(data != null)
+        data.addEventListener('click', declineNotification);
+    });
+    
+    
+}
+
+function acceptNotification(event) {
+    let teamId = event.currentTarget.name;
+
+let request = new XMLHttpRequest();
+    request.open('get', 'seeNotifications.php?' + encodeForAjax({'teamId': teamId, 'accepted': '1'}), true);
+request.addEventListener('load', newNotification);
+request.send();
+
+event.preventDefault();
+}
+
+function declineNotification(event) {
+    let teamId = event.currentTarget.name;
+
+let request = new XMLHttpRequest();
+    request.open('get', 'seeNotifications.php?' + encodeForAjax({'teamId': teamId, 'denied': '0'}), true);
+request.addEventListener('load', newNotification);
+request.send();
+
+event.preventDefault();
+}
+
+
 
 
 function addNote(event) {
 	event.preventDefault();
-	if(taskValue != '')
-		modified = 1;
-	else
-		return;
 
   let listName = document.querySelector('input[name=listName]').value;
   let teamName = document.querySelector('select[name=teamName]').value;
 
+  if(listName != '')
+  	modified = 1;
+  else
+  	return;
 
   let request = new XMLHttpRequest();
   request.open('get', 'addNewTaskList.php?' + encodeForAjax({'listName': listName, 'teamName': teamName}), true);
@@ -157,17 +230,17 @@ function listsReceived() {
                 for(let i = 0; i < data.tasks.length; i++){
 									switch(data.tasks[i].doneState){
 										case "0":
-											color = "#000";
+											color = "#FFF";
 											break;
 										case "1":
-											color = "#666";
+											color = "rgb(241, 126, 31)";
 											break;
 										case "2":
-											color = "#999";
+											color = "#4CAF50";
 											break;
 									}
 									
-												table.innerHTML += '<tr style="height:40px;"><td style="background-color:' + color +
+												table.innerHTML += '<tr style="height:40px;"><td style="background-color:#000; color:' + color +
 												'; border-radius:0px; padding:10px 10px 10px 10px;"">'
 												+ data.tasks[i].field + '</td><td><div class="dropdown"><button name="done" id="doneButton" onclick="event.preventDefault();">'+
 												'</button><div class="dropdown-contentEdit">' +

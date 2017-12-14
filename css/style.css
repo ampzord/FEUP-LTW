@@ -163,6 +163,20 @@ table{
     border-bottom-right-radius: 10px; 
 }
 
+.dropdown-contentNotification {
+    display: none;
+    position: absolute;
+    background-color: #666;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding-left: 5px;
+    padding-right: 5px;
+    right:0px;
+    z-index: 2;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; 
+}
+
 .dropdown-contentEdit {
     display: none;
     position: absolute !important;
@@ -185,7 +199,7 @@ table{
     height: 40px;
     font-size: 16px;
     width: 85px; 
-    background-color: rgb(5, 118, 194);
+    background-color: rgb(165, 164, 164);
     color: white;
     padding: 10px 15px;
     margin: 8px 0;
@@ -196,7 +210,7 @@ table{
 }
 
 #todoBt:hover{
-    background-color: rgb(6, 90, 146);    
+    background-color: rgb(104, 102, 102);    
 }
 
 #doingBt{
@@ -382,6 +396,44 @@ td{
     border: none;
     border-radius: 3px;
     color: #FFF;
+}
+
+#acceptNotificationButton, #acceptNotificationButton:visited{
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width:32px;
+    height: 32px;
+    background-color: #666;
+    background-image: url('../img/add.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    border-radius: 3px;
+}
+
+#acceptNotificationButton:hover, #acceptNotificationButton:active {
+    background-color: #333 !important;
+}
+
+#declineNotificationButton, #declineNotificationButton:visited{
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width:32px;
+    height: 32px;
+    background-color: #666;
+    background-image: url('../img/delete.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    border-radius: 3px;
+}
+
+#declineNotificationButton:hover, #declineNotificationButton:active {
+    background-color: #333 !important;
 }
 
 #searchButton:hover{

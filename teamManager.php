@@ -1,12 +1,29 @@
 <?
 include_once('includes/init.php');
+include_once('database/users.php');
 checkValidSession();
+getUserTeams();
 
 if(isset($_GET['erro'])) 
 {
     if($_GET['erro'] == 'duplicatedTeamName'){
         echo "<script type='text/javascript'>alert('Team name already exists, it must be UNIQUE! Try again.');</script>";
     }
+    else if($_GET['erro'] == 'inexistingUser'){
+        echo "<script type='text/javascript'>alert('User doesn't exist! Try again.');</script>";
+    }
+    if($_GET['erro'] == 'invalidTeam'){
+        echo "<script type='text/javascript'>alert('This team name doesn't exist! Try again.);</script>";
+    }
+}
+if(isset($_GET['success'])) 
+{
+    if($_GET['success'] == '1'){
+        echo "<script type='text/javascript'>alert('Team successfully created!');</script>";
+    }
+    if($_GET['success'] == '2'){
+      echo "<script type='text/javascript'>alert('Your friend has been successfully invited!');</script>";
+  }
 }
 ?>
 
@@ -39,7 +56,11 @@ if(isset($_GET['erro']))
         Add members to your team
         <form id="editTeamForm" method="post" action="manageTeams.php">
         <select name="selectedTeam" required>
-            <option value="">Team</option>
+            <?php
+                foreach($_SESSION['teams'] as $team) {
+                    echo '<option value="' . $team . '">' . $team . '</option>';
+                }
+            ?>
         </select>
           <br>
           <input name="userInvite" type="text" pattern="[a-zA-Z]{3,15}" autocomplete="off" placeholder="*Username to Invite" required> 

@@ -52,6 +52,24 @@ window.onclick = function(event) {
   }
 }
 
+function dropDownNotification() {
+    document.getElementById("dropNotification").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropNotification')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-contentNotification");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
 function dropDownSearcmjyuh() {
     document.getElementById("dropSearchgmg").classList.toggle("show");
 }

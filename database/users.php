@@ -96,7 +96,7 @@ include_once('includes/init.php');
     $stmt = $dbh->prepare('SELECT Team.name 
     FROM Team JOIN TeamMember ON TeamMember.idTeam == Team.id
     Join User ON TeamMember.idUser == User.id
-    WHERE User.username == ?');
+    WHERE User.username == ? AND TeamMember.accepted == 1');
     $stmt->execute(array($_SESSION['username']));
     
     $teamsTable = $stmt->fetchAll();
@@ -119,6 +119,11 @@ function createTeam($teamName){
     global $dbh;
     $stmt = $dbh->prepare('INSERT INTO Team(name) VALUES (?)');
     $stmt->execute(array($teamName));
+    $teamID = $dbh->lastInsertId();
+
+    
+    $stmt = $dbh->prepare("INSERT INTO TeamMember(idUser, idTeam, accepted) VALUES(?, ?, 1)");
+    $stmt->execute(array(getUserID(), $teamID)); 
     // return lastInsertId($stmt);
   }
 

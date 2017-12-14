@@ -93,7 +93,7 @@
     JOIN Team ON TeamMember.idTeam == Team.id
     JOIN List ON Team.id == List.idGroup
     JOIN Task ON Task.idList == List.id
-    WHERE User.username == :uName AND Task.field LIKE :regex
+    WHERE User.username == :uName AND TeamMember.accepted == 1 AND Task.field LIKE :regex
     GROUP BY(List.id)');
 
     $stmt->bindParam(':uName', $_SESSION['username'], PDO::PARAM_STR);
@@ -107,7 +107,7 @@
     FROM User JOIN TeamMember ON User.id == TeamMember.idUser
     JOIN Team ON TeamMember.idTeam == Team.id
     JOIN List ON Team.id == List.idGroup
-    WHERE User.username == ?');
+    WHERE User.username == ? AND TeamMember.accepted == 1');
 
     $stmt->execute(array($_SESSION['username']));
     $messages = $stmt->fetchAll();
